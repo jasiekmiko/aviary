@@ -1,9 +1,9 @@
-<div *ngIf="auth.authState | async">
+<div *ngIf="auth.authState | async as user">
     <a routerLink="/account">
-        <div class="status-text">{{(auth | async)?.auth.displayName || (auth | async)?.auth.email}} </div>
+        <div class="status-text">{{user.displayName || user.email}} </div>
     </a>
     <a routerLink="/account">
-        <img class="img-circle" alt="user avatar" [src]="(auth | async)?.auth.photoURL || 'assets/avatar (1).jpg'"/>
+        <img class="img-circle" alt="user avatar" [src]="user.photoURL || 'assets/avatar (1).jpg'"/>
     </a>
     <div class="btn-group-vertical">
         <button class="btn btn-default" (click)="logout()">Log out</button>
