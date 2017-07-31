@@ -1,9 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from "./dashboard.component";
-import {TournamentsComponent} from "./tournaments.component";
-import {LoginComponent} from "./login.component";
-import {RegisterComponent} from "./register.component";
-import {AccountComponent} from "./account.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {TournamentsComponent} from "./components/tournaments/tournaments.component";
+import {LoginComponent} from "./components/account-management/login/login.component";
+import {RegisterComponent} from "./components/account-management/register/register.component";
+import {AccountComponent} from "./components/account-management/account/account.component";
 
 const appRoutes: Routes = [
     {

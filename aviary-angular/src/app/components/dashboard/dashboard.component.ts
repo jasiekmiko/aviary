@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Response} from '@angular/http';
-import {HttpService} from "./HttpService";
+import {HttpService} from "../../services/HttpService";
 
 @Component({
     selector: 'dashboard',

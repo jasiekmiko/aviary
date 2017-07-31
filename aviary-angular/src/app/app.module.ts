@@ -1,17 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app/app.component';
 import {HttpModule} from "@angular/http";
-import {routing} from "./aviary.routing";
+import {routing} from "./app.routing";
 import {FormsModule} from "@angular/forms";
-import {AccountComponent} from "./account.component";
-import {RegisterComponent} from "./register.component";
-import {LoginComponent} from "./login.component";
-import {TournamentsComponent} from "./tournaments.component";
-import {DashboardComponent} from "./dashboard.component";
-import {CurrentUserComponent} from "./current-user.component";
-import {HttpService} from "./HttpService";
+import {AccountComponent} from "./components/account-management/account/account.component";
+import {RegisterComponent} from "./components/account-management/register/register.component";
+import {LoginComponent} from "./components/account-management/login/login.component";
+import {TournamentsComponent} from "./components/tournaments/tournaments.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {CurrentUserComponent} from "./components/account-management/current-user/current-user.component";
+import {HttpService} from "./services/HttpService";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireAuth} from "angularfire2/auth";
 
@@ -40,13 +40,6 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [
-    // {
-    //   provide: HttpService,
-    //   useFactory: function (backend: XHRBackend, options: RequestOptions, firebase: AngularFireAuth) {
-    //     return new HttpService(backend, options, firebase);
-    //   },
-    //   deps: [XHRBackend, RequestOptions, AngularFireAuth]
-    // },
     AngularFireAuth,
     HttpService
   ],
