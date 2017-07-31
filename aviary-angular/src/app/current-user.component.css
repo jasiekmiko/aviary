@@ -1,0 +1,14 @@
+img {
+    height: 100px;
+}
+
+.status-text {
+    text-align: right;
+    display: inline-block;
+    font-weight: bold;
+}
+
+a, a:hover {
+    color: black;
+    text-decoration: none;
+}

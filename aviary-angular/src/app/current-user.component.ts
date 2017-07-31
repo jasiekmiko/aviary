@@ -3,18 +3,17 @@ import {Router} from "@angular/router";
 import {AngularFireAuth} from "angularfire2/auth";
 
 @Component({
-    selector: 'current-user',
-    templateUrl: 'current-user.component.html',
-
+  selector: 'current-user',
+  templateUrl: 'current-user.component.html',
+  styleUrls: ['current-user.component.css'],
 })
 export class CurrentUserComponent {
-    constructor(
-        public auth :AngularFireAuth,
-        private router :Router) {
-    }
+  constructor(public auth: AngularFireAuth,
+              private router: Router) {
+  }
 
-    logout() {
-        this.auth.auth.signOut();
-        this.router.navigate(['/']);
-    }
+  logout() {
+    this.auth.auth.signOut();
+    this.router.navigate(['/']);
+  }
 }
