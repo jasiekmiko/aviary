@@ -3,7 +3,7 @@
         <div class="status-text">{{(auth | async)?.auth.displayName || (auth | async)?.auth.email}} </div>
     </a>
     <a routerLink="/account">
-        <img class="img-circle" alt="user avatar" [src]="(auth | async)?.auth.photoURL || 'res/avatar (1).jpg'"/>
+        <img class="img-circle" alt="user avatar" [src]="(auth | async)?.auth.photoURL || 'assets/avatar (1).jpg'"/>
     </a>
     <div class="btn-group-vertical">
         <button class="btn btn-default" (click)="logout()">Log out</button>
