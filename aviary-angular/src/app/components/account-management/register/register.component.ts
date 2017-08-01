@@ -17,7 +17,6 @@ export class RegisterComponent {
             }
         });
     }
-
     error;
     newUser = {email: '', name: '', dob: Date(), password: '', passwordRepeat: ''};
 
