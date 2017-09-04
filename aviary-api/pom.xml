@@ -41,7 +41,7 @@ limitations under the License.
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>1.1.3-2</version>
+      <version>1.1.4-2</version>
     </dependency>
     <dependency>
       <groupId>com.google.firebase</groupId>
@@ -92,6 +92,11 @@ limitations under the License.
       <artifactId>jooq</artifactId>
       <version>3.9.5</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.dagger</groupId>
+      <artifactId>dagger</artifactId>
+      <version>2.11</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -102,9 +107,27 @@ limitations under the License.
       <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
-        <version>1.1.3-2</version>
+        <version>1.1.4-2</version>
         <configuration/>
         <executions>
+          <execution>
+            <id>kapt</id>
+            <goals>
+              <goal>kapt</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <sourceDir>src/main/kotlin</sourceDir>
+              </sourceDirs>
+              <annotationProcessorPaths>
+                <annotationProcessorPath>
+                  <groupId>com.google.dagger</groupId>
+                  <artifactId>dagger-compiler</artifactId>
+                  <version>2.11</version>
+                </annotationProcessorPath>
+              </annotationProcessorPaths>
+            </configuration>
+          </execution>
           <execution>
             <id>compile</id>
             <phase>compile</phase>
@@ -140,14 +163,6 @@ limitations under the License.
       </plugin>
       <!-- [END cloudplugin] -->
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.1</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-maven-plugin</artifactId>
         <version>3.5.3</version>
@@ -156,7 +171,7 @@ limitations under the License.
           <driver>org.h2.Driver</driver>
           <url>jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;INIT=create schema if not exists aviary</url>
           <username>sa</username>
-          <password></password>
+          <password/>
           <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
         </configuration>
         <executions>
@@ -182,7 +197,7 @@ limitations under the License.
                 <driver>org.h2.Driver</driver>
                 <url>jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;IFEXISTS=TRUE</url>
                 <user>sa</user>
-                <password></password>
+                <password/>
               </jdbc>
               <generator>
                 <database>
@@ -211,6 +226,27 @@ limitations under the License.
             </fileset>
           </filesets>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>testCompile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
