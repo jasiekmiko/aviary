@@ -25,8 +25,10 @@ detailed instructions.
 ## Maven
 ### Running locally
 There are two code-generation steps required for successful compilation:
-1. Jooq looks at the schema of the h2 db and generates code for the tables
-  Run:`mvn jooq-generate -p`
+1. Jooq looks at the schema of the h2 db and generates code for the tables. Run:
+`
+mvn clean liquibase:update generate-sources
+`
 1. Dagger 2 looks for annotations on classes to build dependency injection helpers.
 Run: `mvn compile`.
 Intellij's inbuilt compiler doesn't understand this :(. `kapt` plugin manages this.
