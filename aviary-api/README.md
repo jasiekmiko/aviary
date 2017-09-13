@@ -25,17 +25,22 @@ detailed instructions.
 ## Maven
 ### Running locally
 There are two code-generation steps required for successful compilation:
-1. Jooq looks at the schema of the h2 db and generates code for the tables. Run:
-`
-mvn clean liquibase:update generate-sources
-`
-1. Dagger 2 looks for annotations on classes to build dependency injection helpers.
-Run: `mvn compile`.
-Intellij's inbuilt compiler doesn't understand this :(. `kapt` plugin manages this.
+1. Jooq looks at the schema of the h2 db and generates code for the tables. 
+1. Dagger 2 looks for annotations (with help from `kapt`) on classes to
+build dependency injection helpers.
+Intellij's inbuilt compiler doesn't currently understand this :(.
+
+Both are run by default with: `mvn compile` (in this directory).
+
+To skip liquibase+jooq steps, run `mvn compile -skipDbUpdate=true`. (Note that this is useless atm, since there
+exists a bug which causes `kapt` to fail if it runs twice without a `clean` between, while a `clean` will remove the
+database-generated code. In the future a different maven profile could be considered which doesn't run any code
+generationSee bug here:
+`https://stackoverflow.com/questions/45151762/kotlin-kapt-java-lang-illegalstateexception-endpostable-already-set`. )
 
 To run the application:`mvn appengine:run`
 
-To use vist: http://localhost:8080/
+To use visit: http://localhost:8080/
 
 ### Deploying
 

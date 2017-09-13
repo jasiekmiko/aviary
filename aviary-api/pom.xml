@@ -21,6 +21,10 @@ limitations under the License.
   <groupId>eu.bluehawkqs</groupId>
   <artifactId>aviary-api</artifactId>
 
+  <properties>
+    <skipDbUpdate>false</skipDbUpdate>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.appengine</groupId>
@@ -167,6 +171,7 @@ limitations under the License.
         <artifactId>liquibase-maven-plugin</artifactId>
         <version>3.5.3</version>
         <configuration>
+          <skip>${skipDbUpdate}</skip>
           <changeLogFile>src/main/resources/db/db-changelog.xml</changeLogFile>
           <driver>org.h2.Driver</driver>
           <url>jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;INIT=create schema if not exists aviary</url>
@@ -179,6 +184,9 @@ limitations under the License.
             <goals>
               <goal>update</goal>
             </goals>
+            <!--This is the same phase as jooq binds to by default. This is higher up int the process, so it should
+              execute first, letting jooq inspect the h2 db it constructs. -->
+            <phase>generate-sources</phase>
           </execution>
         </executions>
       </plugin>
@@ -193,6 +201,7 @@ limitations under the License.
               <goal>generate</goal>
             </goals>
             <configuration>
+              <skip>${skipDbUpdate}</skip>
               <jdbc>
                 <driver>org.h2.Driver</driver>
                 <url>jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;IFEXISTS=TRUE</url>
