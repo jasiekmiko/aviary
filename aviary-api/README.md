@@ -30,7 +30,8 @@ There are two code-generation steps required for successful compilation:
 build dependency injection helpers.
 Intellij's inbuilt compiler doesn't currently understand this :(.
 
-Both are run by default with: `mvn compile` (in this directory).
+Both are run by default with: `mvn compile` (in this directory). Rebuilding the project in Intellij afterwards if often
+necessary
 
 To skip liquibase+jooq steps, run `mvn compile -skipDbUpdate=true`. (Note that this is useless atm, since there
 exists a bug which causes `kapt` to fail if it runs twice without a `clean` between, while a `clean` will remove the
