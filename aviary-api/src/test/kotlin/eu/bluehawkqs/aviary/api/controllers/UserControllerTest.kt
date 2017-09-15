@@ -3,6 +3,9 @@ package eu.bluehawkqs.aviary.api.controllers
 import com.google.api.client.http.HttpStatusCodes
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
+import eu.bluehawkqs.aviary.api.dao.AviaryUser
+import eu.bluehawkqs.aviary.api.dao.UserDao
+import eu.bluehawkqs.aviary.api.di.AviaryComponent
 import eu.bluehawkqs.aviary.api.di.AviaryModule
 import eu.bluehawkqs.aviary.api.di.DaggerAviaryComponent
 import eu.bluehawkqs.aviary.api.di.DatabaseModule
@@ -24,22 +27,23 @@ class UserControllerTest {
     private val req = mock(HttpServletRequest::class.java)
     private val resp = mock(HttpServletResponse::class.java)
     private val output = ByteArrayOutputStream()
+    private val printWriter : PrintWriter = PrintWriter(output, true)
+
+    private val mockUserDao = mock(UserDao::class.java)
 
     @Before
     fun setUp() {
         helper.setUp()
-        val aviaryComponent = DaggerAviaryComponent.builder()
-                .aviaryModule(AviaryModule())
-                .databaseModule(DatabaseModule())
-                // Somehow mock out DAO
-                .build()
+        val aviaryComponent = mock(AviaryComponent::class.java)
         val context = mock(ServletContext::class.java)
         `when`(context.getAttribute("aviaryComponent")).thenReturn(aviaryComponent)
         val config = mock(ServletConfig::class.java)
         `when`(config.servletContext).thenReturn(context)
         controller.init(config)
 
-        `when`(resp.writer).thenReturn(PrintWriter(output))
+        `when`(aviaryComponent.userDao()).thenReturn(mockUserDao)
+
+        `when`(resp.writer).thenReturn(printWriter)
     }
 
     @After
@@ -62,10 +66,13 @@ class UserControllerTest {
 
     @Test
     fun get_returnsAllUsers() {
+        `when`(mockUserDao.getAll()).thenReturn(listOf(AviaryUser("Jon", "Snow")))
+
         controller.doGet(req, resp)
+
         verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
-        // Currently there's not data in the test db :(
-        // assertThat(output.toByteArray().size).isNotEqualTo(0)
+        printWriter.flush()
+        assertThat(output.toString()).isEqualTo("Jon Snow")
     }
 }
 

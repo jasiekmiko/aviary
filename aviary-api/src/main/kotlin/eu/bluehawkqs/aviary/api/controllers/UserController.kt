@@ -14,7 +14,7 @@ class UserController : HttpServlet() {
 
     public override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
         resp.status = HttpStatusCodes.STATUS_CODE_OK
-        aviaryComponent.userDao().getAll().forEach { resp.writer.write("""${it.firstName} ${it.lastName}""") }
+        aviaryComponent.userDao().getAll().forEach { resp.writer.print("""${it.firstName} ${it.lastName}""") }
     }
 
     override fun init(config: ServletConfig?) {
