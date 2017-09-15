@@ -25,6 +25,10 @@ class UserDao @Inject constructor(private val conn: Connection) {
         return emptyList()
     }
 
+    fun addUser(aviaryUser: AviaryUser) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }
 
 data class AviaryUser(val firstName: String, val lastName: String)

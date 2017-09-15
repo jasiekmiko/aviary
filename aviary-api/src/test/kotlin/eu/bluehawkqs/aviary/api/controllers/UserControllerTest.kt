@@ -51,18 +51,16 @@ class UserControllerTest {
         helper.tearDown()
     }
 
-//    @Test
-//    fun saveUser_putsUserInDb() {
-//        `when`(req.method).thenReturn("POST")
-//        `when`(req.reader).thenReturn(BufferedReader(StringReader("""{"Name": "Jan", "Age": 24}""")))
-//
-//        val existingUsers = userDao.getAll().size
-//
-//        controller.doPost(req, resp)
-//
-//        assertThat(userDao.getAll().size).isEqualTo(existingUsers + 1)
-//        verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
-//    }
+    @Test
+    fun saveUser_putsUserInDb() {
+        `when`(req.method).thenReturn("POST")
+        `when`(req.reader).thenReturn(BufferedReader(StringReader("""{"firstName": "Rob", "lastName": "Stark"}""")))
+
+        controller.doPost(req, resp)
+
+        verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
+        verify(mockUserDao).addUser(AviaryUser("Rob", "Stark"))
+    }
 
     @Test
     fun get_returnsAllUsers() {
