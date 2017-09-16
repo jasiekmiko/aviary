@@ -23,6 +23,9 @@ export class HttpService extends Http {
     const url = "http://localhost:8880/" + route;
     return this.auth
       .authState.flatMap(user => {
+        if (user == null) {
+          throw new Error("User is not logged in")
+        }
         return Observable.fromPromise(user.getToken() as Promise<string>)
           .flatMap(token => {
             if (!options) {
