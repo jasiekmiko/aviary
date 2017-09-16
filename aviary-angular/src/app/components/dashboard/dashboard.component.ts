@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Response} from '@angular/http';
 import {HttpService} from "../../services/HttpService";
 
 @Component({
@@ -12,11 +11,11 @@ export class DashboardComponent {
         @Inject(HttpService) private http: HttpService
     ) { }
 
-    private result :Response = null;
+    private result = "";
 
     test(){
         return this.http.get("auth")
-            .subscribe(response => this.result = response,
+            .subscribe(response => this.result = response.text(),
               DashboardComponent.handleError);
     }
 

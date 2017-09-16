@@ -1,7 +1,5 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import com.google.firebase.FirebaseApp
-import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
 import javax.servlet.ServletException
@@ -24,10 +22,11 @@ class AuthController : HttpServlet() {
         resp.contentType = "text/html"
         resp.addHeader("Access-Control-Allow-Origin", "*")
 
-        val token = req.getHeader("Authorization")
-        if (token == null) {
+        val authHeader = req.getHeader("Authorization")
+        if (authHeader == null) {
             resp.writer.write("Empty auth token received")
         } else {
+            val token = authHeader.substringAfter("Bearer ")
             val completedTask = {
                 val task = FirebaseAuth
                         .getInstance()
