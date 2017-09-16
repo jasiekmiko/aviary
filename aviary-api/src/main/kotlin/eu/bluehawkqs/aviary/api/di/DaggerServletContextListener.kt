@@ -1,6 +1,5 @@
 package eu.bluehawkqs.aviary.api.di
 
-import java.sql.DriverManager
 import javax.servlet.ServletContextEvent
 import javax.servlet.ServletContextListener
 
