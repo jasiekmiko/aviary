@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {AngularFireAuth} from "angularfire2/auth";
+import {User} from "firebase/app";
 
 export class HttpService extends Http {
   constructor(@Inject(XHRBackend) backend: XHRBackend,
@@ -19,25 +20,32 @@ export class HttpService extends Http {
     super(backend, options);
   }
 
-  get(route: string, options?: RequestOptionsArgs): Observable<Response> {
-    const url = "http://localhost:8880/" + route;
-    return this.auth
-      .authState.flatMap(user => {
-        if (user == null) {
-          throw new Error("User is not logged in")
-        }
-        return Observable.fromPromise(user.getToken() as Promise<string>)
-          .flatMap(token => {
-            if (!options) {
-              options = {headers: new Headers()};
-            }
-            options.headers.set('Authorization', `Bearer ${token}`);
-            let response = super.get(url, options);
-            response.catch(this.catchAuthError);
-            return response;
-          })
-      })
+  get(route: string, options: RequestOptionsArgs = {headers: new Headers()}): Observable<Response> {
+    return this.setAuthorizationHeader(options)
+      .flatMap(options => super.get(HttpService.createApiUrl(route), options))
+      .catch(this.catchAuthError)
+  }
 
+  post(route: string, body: any, options: RequestOptionsArgs = {headers: new Headers()}): Observable<Response> {
+    return this.setAuthorizationHeader(options)
+      .flatMap(options => super.post(HttpService.createApiUrl(route), body, options))
+      .catch(this.catchAuthError);
+  }
+
+  private static createApiUrl(route: string) {
+    return "http://localhost:8880/" + route;
+  }
+
+  private setAuthorizationHeader(options: RequestOptionsArgs) {
+    return this.auth.authState.flatMap((user: User | null) => {
+      if (user == null) {
+        throw new Error("User is not logged in")
+      }
+      return Observable.fromPromise(user.getIdToken() as Promise<string>)
+    }).map((token: string) => {
+      options.headers.set('Authorization', `Bearer ${token}`);
+      return options;
+    });
   }
 
   private catchAuthError = (res: Response) => {
