@@ -15,8 +15,8 @@ import javax.inject.Inject
 class UserDao @Inject constructor(private val conn: Connection) {
     fun getAll(): List<AviaryUser> {
         try {
-            val context = DSL.using(conn, SQLDialect.MYSQL)
-            return context
+            val create = DSL.using(conn, SQLDialect.MYSQL)
+            return create
                     .select()
                     .from(USERS)
                     .join(PERSONS).on(USERS.PERSON_ID.eq(PERSONS.ID))
@@ -38,14 +38,10 @@ class UserDao @Inject constructor(private val conn: Connection) {
     fun addUser(aviaryUser: AviaryUser) {
         val create = DSL.using(conn, SQLDialect.MYSQL)
         create.transaction { config ->
-            val personsRecord = PersonsRecord()
-            personsRecord.from(aviaryUser.person)
-            val newPersonId = DSL.using(config).insertInto(PERSONS)
-                    .set(personsRecord)
-                    .returning(PERSONS.ID)
-                    .execute()
+            val newPerson = DSL.using(config).newRecord(PERSONS, aviaryUser.person)
+            newPerson.store()
             DSL.using(config).insertInto(USERS)
-                    .set(UsersRecord(aviaryUser.firebaseId, newPersonId))
+                    .set(UsersRecord(aviaryUser.firebaseId, newPerson.id))
                     .execute()
         }
     }
