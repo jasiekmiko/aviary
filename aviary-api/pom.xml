@@ -22,6 +22,7 @@ limitations under the License.
   <artifactId>aviary-api</artifactId>
 
   <properties>
+    <kotlin-version>1.1.4-2</kotlin-version>
     <skipDbUpdate>false</skipDbUpdate>
     <schemaGenDbUrl>
       jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=false;AUTO_SERVER=TRUE;INIT=create schema if not exists AVIARY\; create schema if not exists AVIARY_LIQUIBASE;DB_CLOSE_DELAY=-1
@@ -48,7 +49,7 @@ limitations under the License.
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>1.1.4-2</version>
+      <version>${kotlin-version}</version>
     </dependency>
     <dependency>
       <groupId>com.google.firebase</groupId>
@@ -104,6 +105,17 @@ limitations under the License.
       <artifactId>dagger</artifactId>
       <version>2.11</version>
     </dependency>
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>2.7.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jre8</artifactId>
+      <version>${kotlin-version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -114,7 +126,7 @@ limitations under the License.
       <plugin>
         <artifactId>kotlin-maven-plugin</artifactId>
         <groupId>org.jetbrains.kotlin</groupId>
-        <version>1.1.4-2</version>
+        <version>${kotlin-version}</version>
         <configuration/>
         <executions>
           <execution>

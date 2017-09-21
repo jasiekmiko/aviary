@@ -2,19 +2,17 @@ package eu.bluehawkqs.aviary.api.dao
 
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users.USERS
-import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.PersonsRecord
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.UsersRecord
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
-import java.sql.Connection
-import java.sql.SQLException
 import java.time.LocalDate
 import javax.inject.Inject
+import javax.sql.DataSource
 
 
-class UserDao @Inject constructor(private val conn: Connection) {
+class UserDao @Inject constructor(private val ds: DataSource) {
     fun getAll(): List<AviaryUser> {
-        try {
+        ds.connection.use { conn ->
             val create = DSL.using(conn, SQLDialect.MYSQL)
             return create
                     .select()
@@ -29,20 +27,19 @@ class UserDao @Inject constructor(private val conn: Connection) {
                         it[PERSONS.GENDER]
                 ))
             }
-        } catch (e: SQLException) {
-
         }
-        return emptyList()
     }
 
     fun addUser(aviaryUser: AviaryUser) {
-        val create = DSL.using(conn, SQLDialect.MYSQL)
-        create.transaction { config ->
-            val newPerson = DSL.using(config).newRecord(PERSONS, aviaryUser.person)
-            newPerson.store()
-            DSL.using(config).insertInto(USERS)
-                    .set(UsersRecord(aviaryUser.firebaseId, newPerson.id))
-                    .execute()
+        ds.connection.use { conn ->
+            val create = DSL.using(conn, SQLDialect.MYSQL)
+            create.transaction { config ->
+                val newPerson = DSL.using(config).newRecord(PERSONS, aviaryUser.person)
+                newPerson.store()
+                DSL.using(config).insertInto(USERS)
+                        .set(UsersRecord(aviaryUser.firebaseId, newPerson.id))
+                        .execute()
+            }
         }
     }
 

@@ -24,7 +24,7 @@ import org.jooq.impl.SequenceImpl;
 public class Sequences {
 
     /**
-     * The sequence <code>aviary.system_sequence_ccc75bd1_612b_45a1_b742_99f47a05535c</code>
+     * The sequence <code>aviary.system_sequence_87997606_5c50_4207_8c38_247f8e46584b</code>
      */
-    public static final Sequence<Long> SYSTEM_SEQUENCE_CCC75BD1_612B_45A1_B742_99F47A05535C = new SequenceImpl<Long>("system_sequence_ccc75bd1_612b_45a1_b742_99f47a05535c", Aviary.AVIARY, org.jooq.impl.SQLDataType.BIGINT);
+    public static final Sequence<Long> SYSTEM_SEQUENCE_87997606_5C50_4207_8C38_247F8E46584B = new SequenceImpl<Long>("system_sequence_87997606_5c50_4207_8c38_247f8e46584b", Aviary.AVIARY, org.jooq.impl.SQLDataType.BIGINT);
 }
