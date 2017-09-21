@@ -4,11 +4,15 @@
 package eu.bluehawkqs.aviary.api.dao.aviary;
 
 
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users;
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.PersonsRecord;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.UsersRecord;
 
 import javax.annotation.Generated;
 
+import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
@@ -31,23 +35,35 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<PersonsRecord, Integer> IDENTITY_PERSONS = Identities0.IDENTITY_PERSONS;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<PersonsRecord> PK_PERSONS = UniqueKeys0.PK_PERSONS;
     public static final UniqueKey<UsersRecord> PK_USERS = UniqueKeys0.PK_USERS;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<UsersRecord, PersonsRecord> USER_PERSON_FK = ForeignKeys0.USER_PERSON_FK;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
+    private static class Identities0 extends AbstractKeys {
+        public static Identity<PersonsRecord, Integer> IDENTITY_PERSONS = createIdentity(Persons.PERSONS, Persons.PERSONS.ID);
+    }
+
     private static class UniqueKeys0 extends AbstractKeys {
-        public static final UniqueKey<UsersRecord> PK_USERS = createUniqueKey(Users.USERS, "pk_users", Users.USERS.ID);
+        public static final UniqueKey<PersonsRecord> PK_PERSONS = createUniqueKey(Persons.PERSONS, "pk_persons", Persons.PERSONS.ID);
+        public static final UniqueKey<UsersRecord> PK_USERS = createUniqueKey(Users.USERS, "pk_users", Users.USERS.FIREBASE_ID);
+    }
+
+    private static class ForeignKeys0 extends AbstractKeys {
+        public static final ForeignKey<UsersRecord, PersonsRecord> USER_PERSON_FK = createForeignKey(eu.bluehawkqs.aviary.api.dao.aviary.Keys.PK_PERSONS, Users.USERS, "user_person_fk", Users.USERS.PERSON_ID);
     }
 }

@@ -1,0 +1,30 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+  <changeSet id="0002" author="jan@bluehawkqs.eu" context="dev">
+    <insert tableName="persons">
+      <column name="id" value="1"/>
+      <column name="first_name" value="Jon"/>
+      <column name="last_name" value="Snow"/>
+      <column name="gender" value="Man with a Feminine side"/>
+      <column name="dob" value="1993-04-26 00:00:00"/>
+    </insert>
+    <insert tableName="persons">
+      <column name="id" value="2"/>
+      <column name="first_name" value="Tyrion"/>
+      <column name="last_name" value="Lannister"/>
+      <column name="gender" value="Male"/>
+      <column name="dob" value="1983-06-03 00:00:00"/>
+    </insert>
+    <insert tableName="persons">
+      <column name="id" value="3"/>
+      <column name="first_name" value="Arya"/>
+      <column name="last_name" value="Stark"/>
+      <column name="gender" value="Female"/>
+      <column name="dob" value="2000-02-13 00:00:00"/>
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>

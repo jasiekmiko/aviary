@@ -5,6 +5,7 @@ package eu.bluehawkqs.aviary.api.dao.aviary;
 
 
 import eu.bluehawkqs.aviary.api.dao.DefaultCatalog;
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Catalog;
+import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
 
@@ -31,12 +33,17 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Aviary extends SchemaImpl {
 
-    private static final long serialVersionUID = 68214307;
+    private static final long serialVersionUID = 1380094479;
 
     /**
      * The reference instance of <code>aviary</code>
      */
     public static final Aviary AVIARY = new Aviary();
+
+    /**
+     * The table <code>aviary.persons</code>.
+     */
+    public final Persons PERSONS = eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS;
 
     /**
      * The table <code>aviary.users</code>.
@@ -60,6 +67,18 @@ public class Aviary extends SchemaImpl {
     }
 
     @Override
+    public final List<Sequence<?>> getSequences() {
+        List result = new ArrayList();
+        result.addAll(getSequences0());
+        return result;
+    }
+
+    private final List<Sequence<?>> getSequences0() {
+        return Arrays.<Sequence<?>>asList(
+            Sequences.SYSTEM_SEQUENCE_CCC75BD1_612B_45A1_B742_99F47A05535C);
+    }
+
+    @Override
     public final List<Table<?>> getTables() {
         List result = new ArrayList();
         result.addAll(getTables0());
@@ -68,6 +87,7 @@ public class Aviary extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Persons.PERSONS,
             Users.USERS);
     }
 }

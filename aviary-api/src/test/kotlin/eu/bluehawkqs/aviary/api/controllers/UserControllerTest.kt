@@ -4,11 +4,9 @@ import com.google.api.client.http.HttpStatusCodes
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
 import eu.bluehawkqs.aviary.api.dao.AviaryUser
+import eu.bluehawkqs.aviary.api.dao.Person
 import eu.bluehawkqs.aviary.api.dao.UserDao
 import eu.bluehawkqs.aviary.api.di.AviaryComponent
-import eu.bluehawkqs.aviary.api.di.AviaryModule
-import eu.bluehawkqs.aviary.api.di.DaggerAviaryComponent
-import eu.bluehawkqs.aviary.api.di.DatabaseModule
 import org.junit.After
 import org.junit.Test
 import org.mockito.Mockito.*
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServletResponse
 import org.junit.Before
 import org.assertj.core.api.Assertions.assertThat
 import java.io.*
+import java.time.LocalDate
 import javax.servlet.ServletConfig
 import javax.servlet.ServletContext
 
@@ -58,19 +57,19 @@ class UserControllerTest {
 
         controller.doPost(req, resp)
 
-        verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
-        verify(mockUserDao).addUser(AviaryUser("Rob", "Stark"))
     }
 
     @Test
     fun get_returnsAllUsers() {
-        `when`(mockUserDao.getAll()).thenReturn(listOf(AviaryUser("Jon", "Snow")))
+        `when`(mockUserDao.getAll()).thenReturn(listOf(AviaryUser("aNewFirebaseId",
+                Person(0, "Daenerys", "Targaryen", LocalDate.now(), "dragon"))))
 
         controller.doGet(req, resp)
 
         verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
         printWriter.flush()
-        assertThat(output.toString()).isEqualTo("Jon Snow")
+        assertThat(output.toString()).contains("Daenerys")
+        assertThat(output.toString()).contains("Targaryen")
     }
 }
 

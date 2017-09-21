@@ -14,6 +14,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.ForeignKey;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -34,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Users extends TableImpl<UsersRecord> {
 
-    private static final long serialVersionUID = 1575977678;
+    private static final long serialVersionUID = -1221211201;
 
     /**
      * The reference instance of <code>aviary.users</code>
@@ -50,19 +51,14 @@ public class Users extends TableImpl<UsersRecord> {
     }
 
     /**
-     * The column <code>aviary.users.id</code>.
+     * The column <code>aviary.users.firebase_id</code>.
      */
-    public final TableField<UsersRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<UsersRecord, String> FIREBASE_ID = createField("firebase_id", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
 
     /**
-     * The column <code>aviary.users.first_name</code>.
+     * The column <code>aviary.users.person_id</code>.
      */
-    public final TableField<UsersRecord, String> FIRST_NAME = createField("first_name", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
-
-    /**
-     * The column <code>aviary.users.last_name</code>.
-     */
-    public final TableField<UsersRecord, String> LAST_NAME = createField("last_name", org.jooq.impl.SQLDataType.VARCHAR.length(50).nullable(false), this, "");
+    public final TableField<UsersRecord, Integer> PERSON_ID = createField("person_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>aviary.users</code> table reference
@@ -108,6 +104,14 @@ public class Users extends TableImpl<UsersRecord> {
     @Override
     public List<UniqueKey<UsersRecord>> getKeys() {
         return Arrays.<UniqueKey<UsersRecord>>asList(Keys.PK_USERS);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<ForeignKey<UsersRecord, ?>> getReferences() {
+        return Arrays.<ForeignKey<UsersRecord, ?>>asList(Keys.USER_PERSON_FK);
     }
 
     /**

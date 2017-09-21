@@ -4,6 +4,7 @@
 package eu.bluehawkqs.aviary.api.dao.aviary;
 
 
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users;
 
 import javax.annotation.Generated;
@@ -21,6 +22,11 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>aviary.persons</code>.
+     */
+    public static final Persons PERSONS = eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS;
 
     /**
      * The table <code>aviary.users</code>.

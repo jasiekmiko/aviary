@@ -1,23 +1,33 @@
 package eu.bluehawkqs.aviary.api.dao
 
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users.USERS
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.PersonsRecord
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.UsersRecord
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
 import java.sql.Connection
 import java.sql.SQLException
+import java.time.LocalDate
 import javax.inject.Inject
 
 
 class UserDao @Inject constructor(private val conn: Connection) {
     fun getAll(): List<AviaryUser> {
         try {
-            val context = DSL.using(conn, SQLDialect.H2)
-            context.insertInto(USERS, USERS.FIRST_NAME, USERS.LAST_NAME)
-                    .values("Jon", "Snow")
-                    .execute()
-            val result = context.selectFrom(USERS).fetch()
-            return result.map {
-                AviaryUser(it.firstName, it.lastName)
+            val context = DSL.using(conn, SQLDialect.MYSQL)
+            return context
+                    .select()
+                    .from(USERS)
+                    .join(PERSONS).on(USERS.PERSON_ID.eq(PERSONS.ID))
+                    .fetch().map {
+                AviaryUser(it[USERS.FIREBASE_ID], Person(
+                        it[PERSONS.ID],
+                        it[PERSONS.FIRST_NAME],
+                        it[PERSONS.LAST_NAME],
+                        it[PERSONS.DOB].toLocalDateTime().toLocalDate(),
+                        it[PERSONS.GENDER]
+                ))
             }
         } catch (e: SQLException) {
 
@@ -26,9 +36,22 @@ class UserDao @Inject constructor(private val conn: Connection) {
     }
 
     fun addUser(aviaryUser: AviaryUser) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val create = DSL.using(conn, SQLDialect.MYSQL)
+        create.transaction { config ->
+            val personsRecord = PersonsRecord()
+            personsRecord.from(aviaryUser.person)
+            val newPersonId = DSL.using(config).insertInto(PERSONS)
+                    .set(personsRecord)
+                    .returning(PERSONS.ID)
+                    .execute()
+            DSL.using(config).insertInto(USERS)
+                    .set(UsersRecord(aviaryUser.firebaseId, newPersonId))
+                    .execute()
+        }
     }
 
 }
 
-data class AviaryUser(val firstName: String, val lastName: String)
+data class AviaryUser(val firebaseId: String, val person: Person)
+
+data class Person(val id: Int, val firstName: String, val lastName: String, val dob: LocalDate, val gender: String)

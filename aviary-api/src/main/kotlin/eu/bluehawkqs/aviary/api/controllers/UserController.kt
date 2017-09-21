@@ -2,7 +2,9 @@ package eu.bluehawkqs.aviary.api.controllers
 
 import com.google.api.client.http.HttpStatusCodes
 import eu.bluehawkqs.aviary.api.dao.AviaryUser
+import eu.bluehawkqs.aviary.api.dao.Person
 import eu.bluehawkqs.aviary.api.di.AviaryComponent
+import java.time.LocalDate
 import javax.servlet.ServletConfig
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
@@ -15,12 +17,13 @@ class UserController : HttpServlet() {
 
     public override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
         resp.status = HttpStatusCodes.STATUS_CODE_OK
-        aviaryComponent.userDao().getAll().forEach { resp.writer.print("""${it.firstName} ${it.lastName}""") }
+        aviaryComponent.userDao().getAll().forEach { resp.writer.print(it) }
     }
 
     public override fun doPost(req: HttpServletRequest, resp: HttpServletResponse) {
         // TODO get values from req
-        aviaryComponent.userDao().addUser(AviaryUser("Rob", "Stark"))
+        aviaryComponent.userDao().addUser(AviaryUser("aNewFirebaseId",
+                Person(0, "Daenerys", "Targaryen", LocalDate.now(), "dragon")))
         resp.status = HttpStatusCodes.STATUS_CODE_OK
     }
 

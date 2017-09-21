@@ -23,6 +23,9 @@ limitations under the License.
 
   <properties>
     <skipDbUpdate>false</skipDbUpdate>
+    <schemaGenDbUrl>
+      jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=false;AUTO_SERVER=TRUE;INIT=create schema if not exists AVIARY\; create schema if not exists AVIARY_LIQUIBASE;DB_CLOSE_DELAY=-1
+    </schemaGenDbUrl>
   </properties>
 
   <dependencies>
@@ -173,8 +176,10 @@ limitations under the License.
         <configuration>
           <skip>${skipDbUpdate}</skip>
           <changeLogFile>src/main/resources/db/db-changelog.xml</changeLogFile>
+          <defaultSchemaName>AVIARY</defaultSchemaName>
+          <changelogSchemaName>AVIARY_LIQUIBASE</changelogSchemaName>
           <driver>org.h2.Driver</driver>
-          <url>jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;INIT=create schema if not exists aviary</url>
+          <url>${schemaGenDbUrl}</url>
           <username>sa</username>
           <password/>
           <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
@@ -204,14 +209,14 @@ limitations under the License.
               <skip>${skipDbUpdate}</skip>
               <jdbc>
                 <driver>org.h2.Driver</driver>
-                <url>jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=FALSE;IGNORECASE=TRUE;AUTO_SERVER=TRUE;IFEXISTS=TRUE</url>
+                <url>${schemaGenDbUrl}</url>
                 <user>sa</user>
                 <password/>
               </jdbc>
               <generator>
                 <database>
                   <name>org.jooq.util.h2.H2Database</name>
-                  <includes>(?i:aviary\..*)</includes>
+                  <includes>(?i:AVIARY\..*)</includes>
                 </database>
                 <target>
                   <packageName>eu.bluehawkqs.aviary.api.dao</packageName>
@@ -254,12 +259,16 @@ limitations under the License.
           <execution>
             <id>java-compile</id>
             <phase>compile</phase>
-            <goals> <goal>compile</goal> </goals>
+            <goals>
+              <goal>compile</goal>
+            </goals>
           </execution>
           <execution>
             <id>java-test-compile</id>
             <phase>test-compile</phase>
-            <goals> <goal>testCompile</goal> </goals>
+            <goals>
+              <goal>testCompile</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
