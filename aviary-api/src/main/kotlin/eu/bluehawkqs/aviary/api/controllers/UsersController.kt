@@ -1,5 +1,7 @@
 package eu.bluehawkqs.aviary.api.controllers
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.api.client.http.HttpStatusCodes
 import eu.bluehawkqs.aviary.api.dao.AviaryUser
 import eu.bluehawkqs.aviary.api.dao.Person
@@ -25,9 +27,9 @@ class UsersController : AviaryController() {
     }
 
     public override fun doPost(req: HttpServletRequest, resp: HttpServletResponse) {
-        // TODO get values from req
-        mUsersDao.addUser(AviaryUser("aNewFirebaseId",
-                Person(0, "Daenerys", "Targaryen", LocalDate.now(), "dragon")))
+        val mapper = jacksonObjectMapper()
+        val newUser = mapper.readValue<AviaryUser>(req.reader.readText())
+        mUsersDao.addUser(newUser)
         resp.status = HttpStatusCodes.STATUS_CODE_OK
     }
 
