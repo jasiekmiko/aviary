@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse
 
 
 @WebServlet(name = "Auth", value = "/auth")
-class AuthController : HttpServlet() {
+class AuthController : AviaryController() {
 
     override fun doOptions(req: HttpServletRequest, resp: HttpServletResponse) {
         resp.addHeader("Access-Control-Allow-Origin", "*")

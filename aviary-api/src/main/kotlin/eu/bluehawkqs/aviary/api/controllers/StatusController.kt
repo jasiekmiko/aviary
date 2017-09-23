@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse
 
 
 @WebServlet(name = "Status", value = "/status")
-class StatusController : HttpServlet() {
+class StatusController : AviaryController() {
     override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
         val aviaryComponent = this.servletContext.getAttribute("aviaryComponent") as AviaryComponent
         res.writer.write("Status: OK\n")
