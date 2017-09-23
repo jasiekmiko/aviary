@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.sql.DataSource
 
 
-class UserDao @Inject constructor(private val ds: DataSource) {
+class UsersDao @Inject constructor(private val ds: DataSource) {
     fun getAll(): List<AviaryUser> {
         ds.connection.use { conn ->
             val create = DSL.using(conn, SQLDialect.MYSQL)

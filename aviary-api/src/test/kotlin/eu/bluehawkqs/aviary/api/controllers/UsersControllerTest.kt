@@ -5,7 +5,7 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
 import eu.bluehawkqs.aviary.api.dao.AviaryUser
 import eu.bluehawkqs.aviary.api.dao.Person
-import eu.bluehawkqs.aviary.api.dao.UserDao
+import eu.bluehawkqs.aviary.api.dao.UsersDao
 import eu.bluehawkqs.aviary.api.di.AviaryComponent
 import org.junit.After
 import org.junit.Test
@@ -20,15 +20,15 @@ import javax.servlet.ServletConfig
 import javax.servlet.ServletContext
 
 
-class UserControllerTest {
+class UsersControllerTest {
     private val helper = LocalServiceTestHelper(LocalDatastoreServiceTestConfig())
-    private val controller = UserController()
+    private val controller = UsersController()
     private val req = mock(HttpServletRequest::class.java)
     private val resp = mock(HttpServletResponse::class.java)
     private val output = ByteArrayOutputStream()
     private val printWriter : PrintWriter = PrintWriter(output, true)
 
-    private val mockUserDao = mock(UserDao::class.java)
+    private val mockUserDao = mock(UsersDao::class.java)
 
     @Before
     fun setUp() {
@@ -40,7 +40,7 @@ class UserControllerTest {
         `when`(config.servletContext).thenReturn(context)
         controller.init(config)
 
-        `when`(aviaryComponent.userDao()).thenReturn(mockUserDao)
+        `when`(aviaryComponent.usersDao()).thenReturn(mockUserDao)
 
         `when`(resp.writer).thenReturn(printWriter)
     }
