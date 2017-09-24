@@ -4,7 +4,6 @@ import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.annotation.WebServlet
-import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -12,15 +11,9 @@ import javax.servlet.http.HttpServletResponse
 @WebServlet(name = "Auth", value = "/auth")
 class AuthController : AviaryController() {
 
-    override fun doOptions(req: HttpServletRequest, resp: HttpServletResponse) {
-        resp.addHeader("Access-Control-Allow-Origin", "*")
-        resp.addHeader("Access-Control-Allow-Headers", "Authorization")
-    }
 
     @Throws(ServletException::class, IOException::class)
     override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
-        resp.contentType = "text/html"
-        resp.addHeader("Access-Control-Allow-Origin", "*")
 
         val authHeader = req.getHeader("Authorization")
         if (authHeader == null) {

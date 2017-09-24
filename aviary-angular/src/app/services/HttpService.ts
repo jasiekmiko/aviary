@@ -39,7 +39,7 @@ export class HttpService extends Http {
   private setAuthorizationHeader(options: RequestOptionsArgs) {
     return this.auth.authState.flatMap((user: User | null) => {
       if (user == null) {
-        throw new Error("User is not logged in")
+        throw new Error("AviaryUser is not logged in")
       }
       return Observable.fromPromise(user.getIdToken() as Promise<string>)
     }).map((token: string) => {

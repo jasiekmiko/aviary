@@ -3,9 +3,10 @@ package eu.bluehawkqs.aviary.api.dao
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users.USERS
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.UsersRecord
+import eu.bluehawkqs.aviary.api.models.AviaryUser
+import eu.bluehawkqs.aviary.api.models.Person
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
-import java.time.LocalDate
 import javax.inject.Inject
 import javax.sql.DataSource
 
@@ -44,7 +45,3 @@ class UsersDao @Inject constructor(private val ds: DataSource) {
     }
 
 }
-
-data class AviaryUser(val firebaseId: String, val person: Person)
-
-data class Person(val id: Int, val firstName: String, val lastName: String, val dob: LocalDate, val gender: String)

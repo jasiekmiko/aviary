@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AngularFireAuth} from "angularfire2/auth";
 import {User} from "firebase/app";
 import {HttpService} from "../../../services/HttpService";
+import {AviaryUser, Person} from "../../../models/AviaryUser";
 
 @Component({
   selector: 'register-area',
@@ -26,17 +27,15 @@ export class RegisterComponent {
     this.error = null;
 
     (this.auth.auth.createUserWithEmailAndPassword(this.newUser.email, this.newUser.password) as Promise<User>)
-      .then(this.saveNewUserInDb(this.newUser))
+      .then(fbUser => this.saveNewUserInDb(this.newUser.toAviaryUser(fbUser.uid)))
       .then(this.navigateToLogin)
       .catch(this.showError)
   }
-  private saveNewUserInDb(userData: NewUser) {
-    const body = {
-      email: userData.email,
-      name: userData.name,
-    };
-  return () => this.http.post("users", body).toPromise();
-}
+
+  private saveNewUserInDb(userData: AviaryUser) {
+    return this.http.post("users", userData).toPromise();
+  }
+
   private navigateToLogin = authState => this.router.navigate(['/login']);
   private showError = error => this.error = error
 }
@@ -46,6 +45,16 @@ class NewUser {
               public name: string = "",
               public password: string = "",
               public passwordRepeat: string = "") {
+  }
+
+  toAviaryUser(firebaseId: string): AviaryUser {
+    //TODO Get better data. Add email
+    return new AviaryUser(firebaseId, new Person(
+      this.name,
+      "",
+      new Date("2013-02-04"),
+      "person"
+    ))
   }
 }
 

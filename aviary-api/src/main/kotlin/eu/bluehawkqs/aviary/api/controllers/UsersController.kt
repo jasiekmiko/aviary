@@ -2,9 +2,9 @@ package eu.bluehawkqs.aviary.api.controllers
 
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.google.api.client.http.HttpStatusCodes
-import eu.bluehawkqs.aviary.api.dao.AviaryUser
 import eu.bluehawkqs.aviary.api.dao.UsersDao
 import eu.bluehawkqs.aviary.api.di.AviaryComponent
+import eu.bluehawkqs.aviary.api.models.AviaryUser
 import javax.servlet.ServletConfig
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServletRequest

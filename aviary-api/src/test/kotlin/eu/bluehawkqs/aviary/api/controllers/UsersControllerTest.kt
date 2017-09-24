@@ -3,10 +3,10 @@ package eu.bluehawkqs.aviary.api.controllers
 import com.google.api.client.http.HttpStatusCodes
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
-import eu.bluehawkqs.aviary.api.dao.AviaryUser
-import eu.bluehawkqs.aviary.api.dao.Person
+import eu.bluehawkqs.aviary.api.models.Person
 import eu.bluehawkqs.aviary.api.dao.UsersDao
 import eu.bluehawkqs.aviary.api.di.AviaryComponent
+import eu.bluehawkqs.aviary.api.models.AviaryUser
 import org.junit.After
 import org.junit.Test
 import org.mockito.Mockito.*

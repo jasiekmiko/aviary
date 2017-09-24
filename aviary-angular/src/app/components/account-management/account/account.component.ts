@@ -28,6 +28,7 @@ export class AccountComponent {
     console.log("Account deleted")
   };
   private deletionError = error => {
+    //TODO deal with "requires recent login"
     console.log("Error occurred - account not deleted: " + JSON.stringify(error))
   };
 }
