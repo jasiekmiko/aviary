@@ -7,7 +7,7 @@ import eu.bluehawkqs.aviary.api.models.SerialisationModule
 
 @Component(modules = arrayOf(
         AviaryModule::class,
-        DatabaseModule::class,
+        DevDatabaseModule::class,
         SerialisationModule::class))
 interface AviaryComponent {
     fun authorName(): String

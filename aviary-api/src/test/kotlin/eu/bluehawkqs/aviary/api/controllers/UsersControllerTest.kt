@@ -62,6 +62,7 @@ class UsersControllerTest {
     @Test
     fun get_returnsAllUsers() {
         `when`(mockUserDao.getAll()).thenReturn(listOf(AviaryUser("aNewFirebaseId",
+                "dany@houseTargaryen.tar",
                 Person(0, "Daenerys", "Targaryen", LocalDate.now(), "dragon"))))
 
         controller.doGet(req, resp)

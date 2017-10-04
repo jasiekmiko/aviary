@@ -25,7 +25,7 @@ export class RegisterComponent {
 
   register() {
     this.error = null;
-    let fbProfileDetails = { displayName: this.newUser.displayName(), photoURL: null};
+    let fbProfileDetails = {displayName: this.newUser.displayName(), photoURL: null};
 
     (this.auth.auth.createUserWithEmailAndPassword(this.newUser.email, this.newUser.password) as Promise<User>)
       .then(fbUser => {
@@ -55,13 +55,15 @@ class NewUser {
   }
 
   toAviaryUser(firebaseId: string): AviaryUser {
-    //TODO Add email
-    return new AviaryUser(firebaseId, new Person(
-      this.firstName,
-      this.lastName,
-      this.dob,
-      this.gender
-    ))
+    return new AviaryUser(
+      firebaseId,
+      this.email,
+      new Person(
+        this.firstName,
+        this.lastName,
+        this.dob,
+        this.gender
+      ))
   }
 
   displayName() {

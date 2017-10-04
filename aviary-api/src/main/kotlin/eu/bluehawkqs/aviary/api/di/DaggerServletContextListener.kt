@@ -9,7 +9,7 @@ class DaggerServletContextListener : ServletContextListener {
     override fun contextInitialized(sce: ServletContextEvent) {
         val aviaryComponent = DaggerAviaryComponent.builder()
                 .aviaryModule(AviaryModule())
-                .databaseModule(DatabaseModule())
+                .databaseModule(DevDatabaseModule())
                 .build()
         sce.servletContext.setAttribute("aviaryComponent", aviaryComponent)
     }

@@ -10,9 +10,8 @@ import com.zaxxer.hikari.HikariDataSource
 import com.zaxxer.hikari.HikariConfig
 import javax.sql.DataSource
 
-
 @Module
-class DatabaseModule {
+class DevDatabaseModule {
     @Provides fun database() : DataSource {
         val config = HikariConfig()
         config.jdbcUrl = "jdbc:mysql://localhost:3306/"

@@ -8,7 +8,12 @@
       <column name="firebase_id" type="varchar(50)">
         <constraints nullable="false" primaryKey="true"/>
       </column>
-      <column name="person_id" type="int"/>
+      <column name="person_id" type="int">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
     </createTable>
     <addForeignKeyConstraint baseTableName="users"
                              baseColumnNames="person_id"

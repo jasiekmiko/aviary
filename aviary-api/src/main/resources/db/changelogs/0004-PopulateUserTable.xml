@@ -7,10 +7,12 @@
     <insert tableName="users">
       <column name="firebase_id" value="OcNYYrpsqONOFaYRjgKlLQHzapr2"/>
       <column name="person_id" value="2"/>
+      <column name="email" value="jasiek.miko@gmail.com"/>
     </insert>
     <insert tableName="users">
       <column name="firebase_id" value="sFcJU34G2uhIztujjEksgUEg1Ir1"/>
       <column name="person_id" value="3"/>
+      <column name="email" value="jasiek.miko+user2@gmail.com"/>
     </insert>
   </changeSet>
 </databaseChangeLog>

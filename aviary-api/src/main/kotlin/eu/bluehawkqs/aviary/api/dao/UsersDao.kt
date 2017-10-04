@@ -20,13 +20,14 @@ class UsersDao @Inject constructor(private val ds: DataSource) {
                     .from(USERS)
                     .join(PERSONS).on(USERS.PERSON_ID.eq(PERSONS.ID))
                     .fetch().map {
-                AviaryUser(it[USERS.FIREBASE_ID], Person(
-                        it[PERSONS.ID],
-                        it[PERSONS.FIRST_NAME],
-                        it[PERSONS.LAST_NAME],
-                        it[PERSONS.DOB].toLocalDateTime().toLocalDate(),
-                        it[PERSONS.GENDER]
-                ))
+                AviaryUser(it[USERS.FIREBASE_ID],
+                        it[USERS.EMAIL],
+                        Person(it[PERSONS.ID],
+                                it[PERSONS.FIRST_NAME],
+                                it[PERSONS.LAST_NAME],
+                                it[PERSONS.DOB].toLocalDateTime().toLocalDate(),
+                                it[PERSONS.GENDER]
+                        ))
             }
         }
     }
@@ -38,7 +39,7 @@ class UsersDao @Inject constructor(private val ds: DataSource) {
                 val newPerson = DSL.using(config).newRecord(PERSONS, aviaryUser.person)
                 newPerson.store()
                 DSL.using(config).insertInto(USERS)
-                        .set(UsersRecord(aviaryUser.firebaseId, newPerson.id))
+                        .set(UsersRecord(aviaryUser.firebaseId, newPerson.id, aviaryUser.email))
                         .execute()
             }
         }
