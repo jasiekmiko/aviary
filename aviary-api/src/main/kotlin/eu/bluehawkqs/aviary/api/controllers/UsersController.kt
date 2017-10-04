@@ -20,12 +20,14 @@ class UsersController : AviaryController() {
 
     public override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
         resp.status = HttpStatusCodes.STATUS_CODE_OK
+        // TODO change to return json
         mUsersDao.getAll().forEach { resp.writer.print(it) }
     }
 
     public override fun doPost(req: HttpServletRequest, resp: HttpServletResponse) {
         val newUser = mapper.readValue<AviaryUser>(req.reader.readText())
         mUsersDao.addUser(newUser)
+        //TODO return the user?
         resp.status = HttpStatusCodes.STATUS_CODE_OK
     }
 

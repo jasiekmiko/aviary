@@ -25,9 +25,13 @@ export class RegisterComponent {
 
   register() {
     this.error = null;
+    let fbProfileDetails = { displayName: this.newUser.displayName(), photoURL: null};
 
     (this.auth.auth.createUserWithEmailAndPassword(this.newUser.email, this.newUser.password) as Promise<User>)
-      .then(fbUser => this.saveNewUserInDb(this.newUser.toAviaryUser(fbUser.uid)))
+      .then(fbUser => {
+        fbUser.updateProfile(fbProfileDetails);
+        return this.saveNewUserInDb(this.newUser.toAviaryUser(fbUser.uid))
+      })
       .then(this.navigateToLogin)
       .catch(this.showError)
   }
@@ -42,19 +46,26 @@ export class RegisterComponent {
 
 class NewUser {
   constructor(public email: string = "",
-              public name: string = "",
+              public firstName: string = "",
+              public lastName: string = "",
               public password: string = "",
-              public passwordRepeat: string = "") {
+              public passwordRepeat: string = "",
+              public dob: Date = new Date(),
+              public gender: string = "") {
   }
 
   toAviaryUser(firebaseId: string): AviaryUser {
-    //TODO Get better data. Add email
+    //TODO Add email
     return new AviaryUser(firebaseId, new Person(
-      this.name,
-      "",
-      new Date("2013-02-04"),
-      "person"
+      this.firstName,
+      this.lastName,
+      this.dob,
+      this.gender
     ))
+  }
+
+  displayName() {
+    return `${this.firstName} ${this.lastName}`;
   }
 }
 
