@@ -13,7 +13,7 @@ abstract class AviaryController : HttpServlet() {
     open fun depInjInit(aviaryComponent: AviaryComponent) {}
 
     override fun service(req: HttpServletRequest, resp: HttpServletResponse) {
-        resp.contentType = "text/html" //TODO change to JSON
+        resp.contentType = "application/json"
         resp.addHeader("Access-Control-Allow-Origin", "*")
         resp.addHeader("Access-Control-Allow-Headers", "Authorization")
         resp.addHeader("Access-Control-Allow-Headers", "Content-Type")
