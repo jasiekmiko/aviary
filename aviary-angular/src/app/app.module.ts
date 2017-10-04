@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdInputModule } from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
 import {HttpModule} from "@angular/http";
@@ -34,7 +36,12 @@ const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    // The Material Components must come after the BrowserModule
+    // Can be extracted into own module to declutter:
+    // https://material.angular.io/guide/getting-started#step-3-import-the-component-modules
+    MdInputModule,
     FormsModule,
+    BrowserAnimationsModule,
     routing,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
