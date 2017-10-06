@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MdInputModule, MdButtonModule, MdCardModule} from '@angular/material';
+import {
+  MdInputModule, MdButtonModule, MdCardModule, MdDatepickerModule, MdNativeDateModule,
+  MAT_DATE_LOCALE
+} from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
 import {HttpModule} from "@angular/http";
@@ -42,6 +45,8 @@ const firebaseConfig = {
     MdInputModule,
     MdButtonModule,
     MdCardModule,
+    MdDatepickerModule,
+    MdNativeDateModule,
     FormsModule,
     BrowserAnimationsModule,
     routing,
@@ -49,6 +54,7 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
   ],
   providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     AngularFireAuth,
     HttpService
   ],

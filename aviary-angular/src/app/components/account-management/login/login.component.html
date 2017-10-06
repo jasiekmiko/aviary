@@ -1,6 +1,6 @@
-<md-card class="login-card">
-  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
-    <md-form-field class="login-input">
+<md-card class="form-card">
+  <form (ngSubmit)="login()" #loginForm="ngForm" class="form">
+    <md-form-field class="form-input">
       <input mdInput
              name="email"
              type="email"
@@ -8,7 +8,7 @@
              [(ngModel)]="loginCredentials.email"
              required/>
     </md-form-field>
-    <md-form-field class="login-input">
+    <md-form-field class="form-input">
       <input mdInput
              name="password"
              type="password"

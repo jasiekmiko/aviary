@@ -1,69 +1,73 @@
-<form (ngSubmit)="register()" #registrationForm="ngForm">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control"
-           id="email"
-           name="email"
-           placeholder="benjamin.morton@potato.uk"
-           [(ngModel)]="newUser.email"
-           required/>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password"
+<md-card class="form-card">
+  <form (ngSubmit)="register()" #registrationForm="ngForm">
+  <md-form-field class="form-input">
+    <input mdInput
            class="form-control"
-           id="password"
+           name="email"
+           placeholder="Email Address"
+           [(ngModel)]="newUser.email"
+           #email="ngModel"
+           required/>
+    <md-error *ngIf="email.invalid">Not a valid email</md-error>
+  </md-form-field>
+  <md-form-field class="form-input" hintLabel="Must be at least 10 characters long">
+    <input mdInput
+           type="password"
+           class="form-control"
            name="password"
+           placeholder="Password"
            [(ngModel)]="newUser.password"
            required
+           minlength="10"
            #password="ngModel"/>
-  </div>
-  <div class="form-group">
-    <label for="passwordRepeat">Repeat Password</label>
-    <input type="password"
+    <md-error *ngIf="password.invalid">The password is not long enough.</md-error>
+  </md-form-field>
+  <md-form-field class="form-input">
+    <input mdInput
+           type="password"
            class="form-control"
-           id="passwordRepeat"
            name="passwordRepeat"
+           placeholder="Repeat Password"
+           #repeatPassword="ngModel"
+           pattern="^{{password.value}}$"
            [(ngModel)]="newUser.passwordRepeat"
            required/>
-  </div>
-  <div class="form-group">
-    <label for="firstName">First Name</label>
-    <input class="form-control"
-           id="firstName"
+    <md-error *ngIf="repeatPassword.invalid">Does not match the password</md-error>
+  </md-form-field>
+  <md-form-field class="form-input">
+    <input mdInput
+           class="form-control"
            name="firstName"
-           placeholder="Jon"
+           placeholder="First Name"
            [(ngModel)]="newUser.firstName"
            required>
-  </div>
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input class="form-control"
-           id="lastName"
+  </md-form-field>
+  <md-form-field class="form-input">
+    <input mdInput
+           class="form-control"
            name="lastName"
-           placeholder="Snow"
+           placeholder="Last Name"
            [(ngModel)]="newUser.lastName"
            required>
-  </div>
-  <div class="form-group">
-    <label for="dob">Date of Birth</label>
-    <input class="form-control"
-           id="dob"
+  </md-form-field>
+  <md-form-field class="form-input">
+    <input mdInput
+           [mdDatepicker]="dobDatepicker"
+           class="form-control"
            name="dob"
+           placeholder="Date of Birth"
            [(ngModel)]="newUser.dob"
-           type="date"
            required>
-  </div>
-  <div class="form-group">
-    <label for="gender">Gender</label>
-    <input class="form-control"
-           id="gender"
+    <md-datepicker-toggle mdSuffix [for]="dobDatepicker"></md-datepicker-toggle>
+    <md-datepicker #dobDatepicker startView="year"></md-datepicker>
+  </md-form-field>
+  <md-form-field class="form-input" hintLabel="This is optional and will only be visible to you.">
+    <input mdInput
+           class="form-control"
+           placeholder="Gender"
            name="gender"
-           [(ngModel)]="newUser.gender"
-           required>
-  </div>
-  <button class="btn btn-default"
-          [disabled]="!registrationForm.form.valid">Register
-  </button>
-</form>
-<div *ngIf="error" class="alert alert-danger">Registration failed: {{error}}</div>
+           [(ngModel)]="newUser.gender">
+  </md-form-field>
+  <button md-raised-button [disabled]="!registrationForm.form.valid">Register</button>
+</form></md-card>
+<div *ngIf="error" >Registration failed: {{error}}</div>
