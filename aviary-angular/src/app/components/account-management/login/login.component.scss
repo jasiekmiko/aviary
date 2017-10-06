@@ -1,0 +1,21 @@
+.login-card {
+  max-width: 560px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input {
+  width: 100%;
+}
+
+.login-socials {
+  display: flex;
+  flex-direction: row;
+}
+
+.login-social {
+  flex: 1;
+}

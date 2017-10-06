@@ -6,6 +6,7 @@ import {auth} from "firebase/app";
 @Component({
     selector: 'login-area',
     templateUrl: 'login.component.html',
+    styleUrls: ['login.component.scss']
 
 })
 export class LoginComponent {

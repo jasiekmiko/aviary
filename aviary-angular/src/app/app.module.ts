@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdInputModule } from '@angular/material';
+import {MdInputModule, MdButtonModule, MdCardModule} from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
 import {HttpModule} from "@angular/http";
@@ -40,6 +40,8 @@ const firebaseConfig = {
     // Can be extracted into own module to declutter:
     // https://material.angular.io/guide/getting-started#step-3-import-the-component-modules
     MdInputModule,
+    MdButtonModule,
+    MdCardModule,
     FormsModule,
     BrowserAnimationsModule,
     routing,

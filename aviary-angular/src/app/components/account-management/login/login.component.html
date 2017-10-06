@@ -1,26 +1,27 @@
-<form (ngSubmit)="login()" #loginForm="ngForm">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input class="form-control"
-           id="email" name="email"
-           placeholder="benjamin.morton@potato.uk"
-           [(ngModel)]="loginCredentials.email"
-           required/>
+<md-card class="login-card">
+  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
+    <md-form-field class="login-input">
+      <input mdInput
+             name="email"
+             type="email"
+             placeholder="Email Address"
+             [(ngModel)]="loginCredentials.email"
+             required/>
+    </md-form-field>
+    <md-form-field class="login-input">
+      <input mdInput
+             name="password"
+             type="password"
+             placeholder="Password"
+             [(ngModel)]="loginCredentials.password"
+             required/>
+    </md-form-field>
+    <button md-raised-button [disabled]="!loginForm.form.valid">Log in</button>
+    <button md-button routerLink="/register">Register</button>
+  </form>
+  <div class="login-socials">
+    <button md-button class="login-social" (click)="googleLogin()">Log in with Google</button>
+    <button md-button class="login-social" (click)="facebookLogin()">Log in with Facebook</button>
   </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control"
-           id="password" name="password"
-           [(ngModel)]="loginCredentials.password"
-           required/>
-  </div>
-  <button class="btn btn-default"
-          [disabled]="!loginForm.form.valid">Log in
-  </button>
-  <button class="btn btn-default" routerLink="/register">Register</button>
-</form>
-<div>
-  <button class="btn" (click)="googleLogin()">Log in with Google</button>
-  <button class="btn" (click)="facebookLogin()">Log in with Facebook</button>
-</div>
+</md-card>
 <div *ngIf="error" class="alert alert-danger">Logging in failed: {{error}}</div>
