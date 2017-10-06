@@ -23,6 +23,7 @@ limitations under the License.
 
   <properties>
     <kotlin-version>1.1.4-2</kotlin-version>
+    <jackson-version>2.9.1</jackson-version>
     <skipDbUpdate>false</skipDbUpdate>
     <schemaGenDbUrl>
       jdbc:h2:./target/schema-gen;MODE=MySQL;DATABASE_TO_UPPER=false;AUTO_SERVER=TRUE;INIT=create schema if not exists AVIARY\; create schema if not exists AVIARY_LIQUIBASE;DB_CLOSE_DELAY=-1
@@ -115,7 +116,26 @@ limitations under the License.
       <artifactId>kotlin-stdlib-jre8</artifactId>
       <version>${kotlin-version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+      <version>${kotlin-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-kotlin</artifactId>
+      <version>${jackson-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${jackson-version}</version>
+    </dependency>
   </dependencies>
 
   <build>
