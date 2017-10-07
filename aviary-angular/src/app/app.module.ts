@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdInputModule, MdButtonModule, MdCardModule, MdDatepickerModule, MdNativeDateModule,
-  MAT_DATE_LOCALE
+  MAT_DATE_LOCALE, MdToolbarModule
 } from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
@@ -47,6 +47,7 @@ const firebaseConfig = {
     MdCardModule,
     MdDatepickerModule,
     MdNativeDateModule,
+    MdToolbarModule,
     FormsModule,
     BrowserAnimationsModule,
     routing,

@@ -1,16 +1,20 @@
-<div class="header">
-    <a routerLink="/dashboard"><img class="logo" src="../../../assets/logo.png" alt="BlueHawk Aviary"/></a>
-    <current-user class="current-user"></current-user>
-</div>
+<md-toolbar class="header" role="toolbar">
+  <a md-button routerLink="/dashboard" class="home-link">
+    <img class="logo" src="../../../assets/logo.png" alt="BlueHawk Aviary"/>
+    Aviary
+  </a>
+  <div class="flex-spacer"></div>
+  <current-user></current-user>
+</md-toolbar>
 <router-outlet></router-outlet>
 <div class="footer">
-    <hr />
-    <img class="logo" src="../../../assets/logo-bh.png" alt="BlueHawk Quidditch Supplies" />
-    <div>
-        <span>Aviary is a product of BlueHawk Quidditch Supplies</span>
-        <br />
-        <a routerLink="/about">About Aviary</a>
-        <a routerLink="/contact">Contact us</a>
-    </div>
-    <div>Free Vectors by <a href="http://www.vecteezy.com">vecteezy.com</a></div>
+  <hr/>
+  <img class="logo" src="../../../assets/logo-bh.png" alt="BlueHawk Quidditch Supplies"/>
+  <div>
+    <span>Aviary is a product of BlueHawk Quidditch Supplies</span>
+    <br/>
+    <a routerLink="/about">About Aviary</a>
+    <a routerLink="/contact">Contact us</a>
+  </div>
+  <div>Free Vectors by <a href="http://www.vecteezy.com">vecteezy.com</a></div>
 </div>
