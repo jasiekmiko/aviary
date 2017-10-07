@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'account',
   templateUrl: 'account.component.html',
-  styleUrls: ['account.component.css'],
+  styleUrls: ['account.component.scss'],
 })
 export class AccountComponent {
   deleteConfirmation: Boolean;

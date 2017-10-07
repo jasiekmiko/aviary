@@ -1,47 +1,50 @@
-<h2>Your account</h2>
-<div *ngIf="!deleteConfirmation" class="options btn-group">
-  <button class="btn btn-default">Edit</button>
-  <button class="btn btn-danger" (click)="deleteConfirmation = true">Delete</button>
-</div>
-<div *ngIf="deleteConfirmation" class="options btn-group">
-  <span>Your account will be deleted - this CANNOT be reverted.</span>
-  <button class="btn btn-danger" (click)="deleteAccount()">Yes, Delete</button>
-  <button class="btn btn" (click)="deleteConfirmation = false">Cancel</button>
-</div>
-<div class="form-horizontal">
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="photo">Profile photo</label>
-    <div class="col-sm-10">
-      <img class="col-sm-10 img-circle avatar"
-           [src]="(auth.authState | async)?.photoURL || 'res/avatar (1).jpg'" id="photo">
+<md-card class="form-card">
+  <md-card-title>
+    <h2>Your account</h2>
+  </md-card-title>
+  <md-card-content>
+    <div>
+      <label for="photo">Profile photo</label>
+      <div>
+        <img class="img-circle"
+             [src]="(auth.authState | async)?.photoURL || 'res/avatar (1).jpg'"
+             id="photo">
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="email">Email</label>
-    <div class="col-sm-10">
-      <input class="form-control"
-             id="email"
+    <md-form-field class="form-input">
+      <input mdInput
+             placeholder="Email Address"
              [ngModel]="(auth.authState | async)?.email"
              readonly/>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="name">Name</label>
-    <div class="col-sm-10">
-      <input class="form-control"
-             id="name"
+    </md-form-field>
+    <md-form-field class="form-input">
+      <input mdInput
+             placeholder="Name"
              [ngModel]="(auth.authState | async)?.displayName"
              readonly/>
+    </md-form-field>
+    <div>
+      <label for="login-method">Login method</label>
+      <div [ngSwitch]="(auth.authState | async)?.providerData[0].providerId" class="col-sm-10 form-control-static"
+           id="login-method">
+        <p *ngSwitchCase="'google.com'">Logged in with google.</p>
+        <p *ngSwitchCase="'password'">Logged in with password.</p>
+        <p *ngSwitchCase="'facebook.com'">Logged in with facebook.</p>
+      </div>
+      <span class="help-block">Note: We do not support linking your account to several login methods at the moment. Please make sure you always use the same login method to access your account.</span>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="col-sm-2 control-label" for="login-method">Login method</label>
-    <div [ngSwitch]="(auth.authState | async)?.providerData[0].providerId" class="col-sm-10 form-control-static"
-         id="login-method">
-      <p *ngSwitchCase="'google.com'">Logged in with google.</p>
-      <p *ngSwitchCase="'password'">Logged in with password.</p>
-      <p *ngSwitchCase="'facebook.com'">Logged in with facebook.</p>
-    </div>
-    <span class="help-block">Note: We do not support linking your account to several login methods at the moment. Please make sure you always use the same login method to access your account.</span>
-  </div>
-</div>
+    <span *ngIf="deleteConfirmation">
+      <br/>
+      Your account will be deleted - this CANNOT be reverted.
+    </span>
+  </md-card-content>
+  <md-card-actions *ngIf="!deleteConfirmation">
+    <button md-button>Edit</button>
+    <button md-button color="warn" (click)="deleteConfirmation = true">Delete</button>
+  </md-card-actions>
+  <md-card-actions *ngIf="deleteConfirmation">
+    //TPDP consider popup instead?
+    <button md-raised-button color="warn" (click)="deleteAccount()">Yes, Delete</button>
+    <button md-raised-button (click)="deleteConfirmation = false">Cancel</button>
+  </md-card-actions>
+</md-card>
