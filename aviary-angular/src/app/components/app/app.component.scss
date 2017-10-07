@@ -3,10 +3,10 @@ $bh-primary-color: #4658A7;
 
 .header {
   background-color: $bh-primary-color;
-  color: white;
 }
 
 .home-link {
+  color: white;
   // This link holds the image and elevates it slightly without this reset:
   line-height: 0;
 }

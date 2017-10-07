@@ -1,15 +1,10 @@
 <div *ngIf="auth.authState | async as user">
-    <a routerLink="/account">
-        <div class="status-text">{{user.displayName || user.email}} </div>
-    </a>
-    <a routerLink="/account">
-        <img class="img-circle" alt="user avatar" [src]="user.photoURL || 'assets/avatar (1).jpg'"/>
-    </a>
-    <div class="btn-group-vertical">
-        <button class="btn btn-default" (click)="logout()">Log out</button>
-        <button class="btn btn-default" routerLink="/account">Account</button>
-    </div>
+  <button md-raised-button color="primary" class="btn btn-default" (click)="logout()">Log out</button>
+  <a md-raised-button color="primary" routerLink="/account">
+    <div class="status-text">{{user.displayName || user.email}} </div>
+    <img class="img-circle" alt="User avatar" [src]="user.photoURL || 'assets/avatar (1).jpg'"/>
+  </a>
 </div>
 <div *ngIf="!(auth.authState | async)">
-    <button class="btn btn-default" routerLink="/login" routerLinkActive="hide">Log in</button>
+  <button md-raised-button routerLink="/login" routerLinkActive="hide">Log in</button>
 </div>

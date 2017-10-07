@@ -5,7 +5,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 @Component({
   selector: 'current-user',
   templateUrl: 'current-user.component.html',
-  styleUrls: ['current-user.component.css'],
+  styleUrls: ['current-user.component.scss'],
 })
 export class CurrentUserComponent {
   constructor(public auth: AngularFireAuth,
