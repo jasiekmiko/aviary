@@ -1,6 +1,6 @@
 <div *ngIf="auth.authState | async as user">
-  <button md-raised-button color="primary" class="btn btn-default" (click)="logout()">Log out</button>
-  <a md-raised-button color="primary" routerLink="/account">
+  <button md-button class="btn btn-default" (click)="logout()">Log out</button>
+  <a md-button routerLink="/account">
     <div class="status-text">{{user.displayName || user.email}} </div>
     <img class="img-circle" alt="User avatar" [src]="user.photoURL || 'assets/avatar (1).jpg'"/>
   </a>
