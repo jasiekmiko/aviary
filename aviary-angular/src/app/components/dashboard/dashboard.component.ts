@@ -11,7 +11,7 @@ export class DashboardComponent {
         @Inject(HttpService) private http: HttpService
     ) { }
 
-    private result = "";
+    result = "";
 
     test(){
         return this.http.get("auth")
