@@ -5,6 +5,7 @@ package eu.bluehawkqs.aviary.api.dao.aviary;
 
 
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons;
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Tournaments;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users;
 
 import javax.annotation.Generated;
@@ -27,6 +28,11 @@ public class Tables {
      * The table <code>aviary.persons</code>.
      */
     public static final Persons PERSONS = eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS;
+
+    /**
+     * The table <code>aviary.tournaments</code>.
+     */
+    public static final Tournaments TOURNAMENTS = eu.bluehawkqs.aviary.api.dao.aviary.tables.Tournaments.TOURNAMENTS;
 
     /**
      * The table <code>aviary.users</code>.

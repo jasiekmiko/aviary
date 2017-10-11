@@ -6,6 +6,7 @@ package eu.bluehawkqs.aviary.api.dao.aviary;
 
 import eu.bluehawkqs.aviary.api.dao.DefaultCatalog;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons;
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Tournaments;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Aviary extends SchemaImpl {
 
-    private static final long serialVersionUID = -880398693;
+    private static final long serialVersionUID = -1167028695;
 
     /**
      * The reference instance of <code>aviary</code>
@@ -44,6 +45,11 @@ public class Aviary extends SchemaImpl {
      * The table <code>aviary.persons</code>.
      */
     public final Persons PERSONS = eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS;
+
+    /**
+     * The table <code>aviary.tournaments</code>.
+     */
+    public final Tournaments TOURNAMENTS = eu.bluehawkqs.aviary.api.dao.aviary.tables.Tournaments.TOURNAMENTS;
 
     /**
      * The table <code>aviary.users</code>.
@@ -75,7 +81,8 @@ public class Aviary extends SchemaImpl {
 
     private final List<Sequence<?>> getSequences0() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.SYSTEM_SEQUENCE_0E673F8A_4472_456E_A4D4_E08D63E0C2F2);
+            Sequences.SYSTEM_SEQUENCE_6A938206_74EA_4EAA_A381_F105EDF1B267,
+            Sequences.SYSTEM_SEQUENCE_E28B0BAB_EBE9_4766_BD73_EF97A28AF902);
     }
 
     @Override
@@ -88,6 +95,7 @@ public class Aviary extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             Persons.PERSONS,
+            Tournaments.TOURNAMENTS,
             Users.USERS);
     }
 }

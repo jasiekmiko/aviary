@@ -7,10 +7,7 @@ import javax.servlet.ServletContextListener
 class DaggerServletContextListener : ServletContextListener {
 
     override fun contextInitialized(sce: ServletContextEvent) {
-        val aviaryComponent = DaggerAviaryComponent.builder()
-                .aviaryModule(AviaryModule())
-                .databaseModule(DevDatabaseModule())
-                .build()
+        val aviaryComponent = DaggerAviaryComponent.create()
         sce.servletContext.setAttribute("aviaryComponent", aviaryComponent)
     }
 

@@ -5,8 +5,10 @@ package eu.bluehawkqs.aviary.api.dao.aviary;
 
 
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons;
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.Tournaments;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.PersonsRecord;
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.TournamentsRecord;
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.UsersRecord;
 
 import javax.annotation.Generated;
@@ -36,12 +38,14 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final Identity<PersonsRecord, Integer> IDENTITY_PERSONS = Identities0.IDENTITY_PERSONS;
+    public static final Identity<TournamentsRecord, Integer> IDENTITY_TOURNAMENTS = Identities0.IDENTITY_TOURNAMENTS;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
     public static final UniqueKey<PersonsRecord> PK_PERSONS = UniqueKeys0.PK_PERSONS;
+    public static final UniqueKey<TournamentsRecord> PK_TOURNAMENTS = UniqueKeys0.PK_TOURNAMENTS;
     public static final UniqueKey<UsersRecord> PK_USERS = UniqueKeys0.PK_USERS;
 
     // -------------------------------------------------------------------------
@@ -56,10 +60,12 @@ public class Keys {
 
     private static class Identities0 extends AbstractKeys {
         public static Identity<PersonsRecord, Integer> IDENTITY_PERSONS = createIdentity(Persons.PERSONS, Persons.PERSONS.ID);
+        public static Identity<TournamentsRecord, Integer> IDENTITY_TOURNAMENTS = createIdentity(Tournaments.TOURNAMENTS, Tournaments.TOURNAMENTS.ID);
     }
 
     private static class UniqueKeys0 extends AbstractKeys {
         public static final UniqueKey<PersonsRecord> PK_PERSONS = createUniqueKey(Persons.PERSONS, "pk_persons", Persons.PERSONS.ID);
+        public static final UniqueKey<TournamentsRecord> PK_TOURNAMENTS = createUniqueKey(Tournaments.TOURNAMENTS, "pk_tournaments", Tournaments.TOURNAMENTS.ID);
         public static final UniqueKey<UsersRecord> PK_USERS = createUniqueKey(Users.USERS, "pk_users", Users.USERS.FIREBASE_ID);
     }
 

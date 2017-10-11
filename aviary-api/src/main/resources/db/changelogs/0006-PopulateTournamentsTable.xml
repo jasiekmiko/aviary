@@ -1,0 +1,28 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+  <changeSet id="0006" author="jan@bluehawkqs.eu" context="dev">
+    <insert tableName="tournaments">
+      <column name="id" value="1"/>
+      <column name="name" value="The Hand's Tourney"/>
+      <column name="description" value="Tournament in favour of the newly appointed Hand of King Ned Stark"/>
+      <column name="location" value="King's Landing"/>
+      <column name="start-date" value="1983-06-03 00:00:00"/>
+      <column name="end-date" value="1983-06-04 00:00:00"/>
+      <column name="registration-deadline" value="1983-05-03 00:00:00"/>
+      <column name="size" value="32"/>
+    </insert>
+    <insert tableName="tournaments">
+      <column name="id" value="2"/>
+      <column name="name" value="King Joffrey's Name Day"/>
+      <column name="description" value="Tournament to celebrate the name day of the young Lion King"/>
+      <column name="location" value="King's Landing"/>
+      <column name="start-date" value="1983-06-03 00:00:00"/>
+      <column name="end-date" value="1983-06-04 00:00:00"/>
+      <column name="registration-deadline" value="1983-05-03 00:00:00"/>
+      <column name="size" value="16"/>
+    </insert>
+  </changeSet>
+</databaseChangeLog>
