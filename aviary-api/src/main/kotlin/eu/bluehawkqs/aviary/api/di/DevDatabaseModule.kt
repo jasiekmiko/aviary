@@ -14,6 +14,7 @@ import javax.sql.DataSource
 class DevDatabaseModule {
     @Provides fun database() : DataSource {
         val config = HikariConfig()
+        //TODO vary by environment
         config.jdbcUrl = "jdbc:mysql://localhost:3306/"
         config.username = "root"
         config.password = "dev"

@@ -32,6 +32,7 @@ limitations under the License.
 
   <dependencies>
     <dependency>
+      <!--TODO update and see if servlets 3.0 work on deployment -->
       <groupId>com.google.appengine</groupId>
       <artifactId>appengine-api-1.0-sdk</artifactId>
       <version>1.9.54</version>
@@ -190,6 +191,13 @@ limitations under the License.
         <configuration>
           <archiveClasses>true</archiveClasses>
           <failOnMissingWebXml>false</failOnMissingWebXml>
+          <webResources>
+            <resource>
+              <!-- Would be good to add a step capable of building this - rn it needs `ng build -prod -e` run-->
+              <!-- this is relative to the pom.xml directory -->
+              <directory>../aviary-angular/dist/</directory>
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
       <!-- [START cloudplugin] -->

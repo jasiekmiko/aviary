@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 
-@WebServlet(name = "Auth", value = "/auth")
+@WebServlet(name = "Auth", value = "/api/auth")
 class AuthController : AviaryController() {
 
 
@@ -20,6 +20,7 @@ class AuthController : AviaryController() {
             resp.writer.write("Empty auth token received")
         } else {
             val token = authHeader.substringAfter("Bearer ")
+            // TODO implement proper async stuff
             val completedTask = {
                 val task = FirebaseAuth
                         .getInstance()

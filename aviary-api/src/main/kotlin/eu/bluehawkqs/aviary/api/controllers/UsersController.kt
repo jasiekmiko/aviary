@@ -10,7 +10,7 @@ import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@WebServlet(name = "Users", value = "/users")
+@WebServlet(name = "Users", value = "/api/users")
 class UsersController : AviaryController() {
     override fun depInjInit(aviaryComponent: AviaryComponent) {
         mUsersDao = aviaryComponent.usersDao()

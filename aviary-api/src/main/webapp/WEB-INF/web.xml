@@ -6,4 +6,40 @@
   <listener>
     <listener-class>eu.bluehawkqs.aviary.api.firebase.FirebaseContextListener</listener-class>
   </listener>
+  <!-- Ideally the annotation based-mapping (Servlet 3.1) would be enough, but it doesn't seem to work in deployment
+  for whatever reason :(
+  I'm opting for keeping both, as annotations are preferable and I'm hopeful they'll work on gae soon. -->
+  <servlet>
+    <servlet-name>Index</servlet-name>
+    <servlet-class>eu.bluehawkqs.aviary.api.controllers.IndexController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Index</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Status</servlet-name>
+    <servlet-class>eu.bluehawkqs.aviary.api.controllers.StatusController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Status</servlet-name>
+    <url-pattern>/api/status</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Auth</servlet-name>
+    <servlet-class>eu.bluehawkqs.aviary.api.controllers.AuthController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Auth</servlet-name>
+    <url-pattern>/api/auth</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Users</servlet-name>
+    <servlet-class>eu.bluehawkqs.aviary.api.controllers.UsersController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Users</servlet-name>
+    <url-pattern>/api/users</url-pattern>
+  </servlet-mapping>
+
 </web-app>
