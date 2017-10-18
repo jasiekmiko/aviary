@@ -17,14 +17,14 @@
       <column name="location" type="varchar(255)">
         <constraints nullable="false"/>
       </column>
-      <column name="start-date" type="timestamp">
+      <column name="start-date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
         <constraints nullable="false"/>
       </column>
-      <column name="end-date" type="timestamp">
+      <column name="end-date" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
         <constraints nullable="false"/>
       </column>
       <column name="registration-deadline" type="timestamp">
-        <constraints nullable="false"/>
+        <constraints nullable="true"/>
       </column>
       <column name="size" type="int">
         <constraints nullable="false"/>

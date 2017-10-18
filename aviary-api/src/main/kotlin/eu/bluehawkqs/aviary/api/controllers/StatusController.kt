@@ -12,5 +12,6 @@ class StatusController : AviaryController() {
         val aviaryComponent = this.servletContext.getAttribute("aviaryComponent") as AviaryComponent
         res.writer.write("Status: OK\n")
         res.writer.write("Author: ${aviaryComponent.authorName()}\n")
+        res.writer.write("Environment: ${aviaryComponent.config().getProperty("env")}\n")
     }
 }
