@@ -11,7 +11,7 @@
   I'm opting for keeping both, as annotations are preferable and I'm hopeful they'll work on gae soon. -->
   <servlet>
     <servlet-name>Index</servlet-name>
-    <servlet-class>eu.bluehawkqs.aviary.api.controllers.IndexController</servlet-class>
+    <jsp-file>/index.html</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>Index</servlet-name>
