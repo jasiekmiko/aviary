@@ -24,12 +24,12 @@ import org.jooq.impl.SequenceImpl;
 public class Sequences {
 
     /**
-     * The sequence <code>aviary.system_sequence_6a938206_74ea_4eaa_a381_f105edf1b267</code>
+     * The sequence <code>aviary.system_sequence_a31275a0_5e10_4819_97ce_348d3b8746f8</code>
      */
-    public static final Sequence<Long> SYSTEM_SEQUENCE_6A938206_74EA_4EAA_A381_F105EDF1B267 = new SequenceImpl<Long>("system_sequence_6a938206_74ea_4eaa_a381_f105edf1b267", Aviary.AVIARY, org.jooq.impl.SQLDataType.BIGINT);
+    public static final Sequence<Long> SYSTEM_SEQUENCE_A31275A0_5E10_4819_97CE_348D3B8746F8 = new SequenceImpl<Long>("system_sequence_a31275a0_5e10_4819_97ce_348d3b8746f8", Aviary.AVIARY, org.jooq.impl.SQLDataType.BIGINT);
 
     /**
-     * The sequence <code>aviary.system_sequence_e28b0bab_ebe9_4766_bd73_ef97a28af902</code>
+     * The sequence <code>aviary.system_sequence_a7e4b0cb_1a70_4050_bc4e_e95063497c3a</code>
      */
-    public static final Sequence<Long> SYSTEM_SEQUENCE_E28B0BAB_EBE9_4766_BD73_EF97A28AF902 = new SequenceImpl<Long>("system_sequence_e28b0bab_ebe9_4766_bd73_ef97a28af902", Aviary.AVIARY, org.jooq.impl.SQLDataType.BIGINT);
+    public static final Sequence<Long> SYSTEM_SEQUENCE_A7E4B0CB_1A70_4050_BC4E_E95063497C3A = new SequenceImpl<Long>("system_sequence_a7e4b0cb_1a70_4050_bc4e_e95063497c3a", Aviary.AVIARY, org.jooq.impl.SQLDataType.BIGINT);
 }

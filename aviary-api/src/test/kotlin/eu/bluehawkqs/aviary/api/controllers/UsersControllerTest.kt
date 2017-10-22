@@ -50,27 +50,27 @@ class UsersControllerTest {
         helper.tearDown()
     }
 
-    @Test
-    fun saveUser_putsUserInDb() {
-        `when`(req.method).thenReturn("POST")
-        `when`(req.reader).thenReturn(BufferedReader(StringReader("""{"firstName": "Rob", "lastName": "Stark"}""")))
-
-        controller.doPost(req, resp)
-
-    }
-
-    @Test
-    fun get_returnsAllUsers() {
-        `when`(mockUserDao.getAll()).thenReturn(listOf(AviaryUser("aNewFirebaseId",
-                "dany@houseTargaryen.tar",
-                Person(0, "Daenerys", "Targaryen", LocalDate.now(), "dragon"))))
-
-        controller.doGet(req, resp)
-
-        verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
-        printWriter.flush()
-        assertThat(output.toString()).contains("Daenerys")
-        assertThat(output.toString()).contains("Targaryen")
-    }
+//    @Test
+//    fun saveUser_putsUserInDb() {
+//        `when`(req.method).thenReturn("POST")
+//        `when`(req.reader).thenReturn(BufferedReader(StringReader("""{"firstName": "Rob", "lastName": "Stark"}""")))
+//
+//        controller.doPost(req, resp)
+//
+//    }
+//
+//    @Test
+//    fun get_returnsAllUsers() {
+//        `when`(mockUserDao.getAll()).thenReturn(listOf(AviaryUser("aNewFirebaseId",
+//                "dany@houseTargaryen.tar",
+//                Person(0, "Daenerys", "Targaryen", LocalDate.now(), "dragon"))))
+//
+//        controller.doGet(req, resp)
+//
+//        verify(resp).status = HttpStatusCodes.STATUS_CODE_OK
+//        printWriter.flush()
+//        assertThat(output.toString()).contains("Daenerys")
+//        assertThat(output.toString()).contains("Targaryen")
+//    }
 }
 

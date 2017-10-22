@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {AngularFireAuth} from "angularfire2/auth";
 import {User} from "firebase/app";
+import {environment} from "../../environments/environment";
 
 export class HttpService extends Http {
   constructor(@Inject(XHRBackend) backend: XHRBackend,
@@ -33,7 +34,7 @@ export class HttpService extends Http {
   }
 
   private static createApiUrl(route: string) {
-    return "http://localhost:8880/" + route;
+    return environment.apiAddress + route;
   }
 
   private setAuthorizationHeader(options: RequestOptionsArgs) {

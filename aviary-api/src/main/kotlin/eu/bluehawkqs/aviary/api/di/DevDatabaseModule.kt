@@ -8,18 +8,19 @@ import liquibase.database.jvm.JdbcConnection
 import liquibase.resource.ClassLoaderResourceAccessor
 import com.zaxxer.hikari.HikariDataSource
 import com.zaxxer.hikari.HikariConfig
+import java.util.*
 import javax.sql.DataSource
 
 @Module
 class DevDatabaseModule {
-    @Provides fun database() : DataSource {
+    @Provides fun database(properties: Properties) : DataSource {
         val config = HikariConfig()
-        config.jdbcUrl = "jdbc:mysql://localhost:3306/"
-        config.username = "root"
-        config.password = "dev"
+        config.jdbcUrl = properties.getProperty("db.url")
+        config.username = properties.getProperty("db.username")
+        config.password = properties.getProperty("db.password")
         val ds = HikariDataSource(config)
         val database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(JdbcConnection(ds.connection))
-        database.defaultSchemaName = "AVIARY"
+        database.defaultSchemaName = "aviary"
         val liquibase = Liquibase("db/db-changelog.xml", ClassLoaderResourceAccessor(), database)
         liquibase.update("")
         return ds

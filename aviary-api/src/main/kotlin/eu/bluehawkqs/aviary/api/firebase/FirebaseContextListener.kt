@@ -7,6 +7,7 @@ import javax.servlet.ServletContextListener
 
 class FirebaseContextListener : ServletContextListener {
     override fun contextInitialized(sce: ServletContextEvent) {
+        //TODO vary by environment?
         val firebaseCredentials = sce.servletContext.getResourceAsStream("/WEB-INF/Aviary-firebase-credentials.json")
         val options = FirebaseOptions.Builder()
                 .setServiceAccount(firebaseCredentials)

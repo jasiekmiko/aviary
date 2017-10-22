@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tournaments extends TableImpl<TournamentsRecord> {
 
-    private static final long serialVersionUID = -175520263;
+    private static final long serialVersionUID = -1085174506;
 
     /**
      * The reference instance of <code>aviary.tournaments</code>
@@ -74,17 +74,17 @@ public class Tournaments extends TableImpl<TournamentsRecord> {
     /**
      * The column <code>aviary.tournaments.start-date</code>.
      */
-    public final TableField<TournamentsRecord, Timestamp> START_DATE = createField("start-date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<TournamentsRecord, Timestamp> START_DATE = createField("start-date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("NOW()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
      * The column <code>aviary.tournaments.end-date</code>.
      */
-    public final TableField<TournamentsRecord, Timestamp> END_DATE = createField("end-date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<TournamentsRecord, Timestamp> END_DATE = createField("end-date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false).defaultValue(org.jooq.impl.DSL.field("NOW()", org.jooq.impl.SQLDataType.TIMESTAMP)), this, "");
 
     /**
      * The column <code>aviary.tournaments.registration-deadline</code>.
      */
-    public final TableField<TournamentsRecord, Timestamp> REGISTRATION_DEADLINE = createField("registration-deadline", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<TournamentsRecord, Timestamp> REGISTRATION_DEADLINE = createField("registration-deadline", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * The column <code>aviary.tournaments.size</code>.

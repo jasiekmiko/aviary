@@ -34,7 +34,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Aviary extends SchemaImpl {
 
-    private static final long serialVersionUID = -1167028695;
+    private static final long serialVersionUID = -168861179;
 
     /**
      * The reference instance of <code>aviary</code>
@@ -81,8 +81,8 @@ public class Aviary extends SchemaImpl {
 
     private final List<Sequence<?>> getSequences0() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.SYSTEM_SEQUENCE_6A938206_74EA_4EAA_A381_F105EDF1B267,
-            Sequences.SYSTEM_SEQUENCE_E28B0BAB_EBE9_4766_BD73_EF97A28AF902);
+            Sequences.SYSTEM_SEQUENCE_A31275A0_5E10_4819_97CE_348D3B8746F8,
+            Sequences.SYSTEM_SEQUENCE_A7E4B0CB_1A70_4050_BC4E_E95063497C3A);
     }
 
     @Override
