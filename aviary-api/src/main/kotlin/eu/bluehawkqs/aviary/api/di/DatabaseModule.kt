@@ -12,7 +12,7 @@ import java.util.*
 import javax.sql.DataSource
 
 @Module
-class DevDatabaseModule {
+class DatabaseModule {
     @Provides fun database(properties: Properties) : DataSource {
         val config = HikariConfig()
         config.jdbcUrl = properties.getProperty("db.url")

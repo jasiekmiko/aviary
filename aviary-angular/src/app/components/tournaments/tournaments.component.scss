@@ -1,0 +1,21 @@
+tournaments {
+  margin: 24px;
+}
+
+.tournaments-list {
+  display: flex;
+  flex-direction: row;
+  & > :nth-child(n+2) {
+    margin-left: 12px;
+  }
+}
+
+.tournament {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tournament-body {
+  flex: 1;
+}

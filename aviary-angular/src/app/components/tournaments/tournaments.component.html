@@ -1,1 +1,19 @@
 <h2>Tournaments</h2>
+<div class="tournaments-list">
+  <md-card *ngFor="let tournament of tournaments" class="tournament">
+    <md-card-title>{{tournament.name}}</md-card-title>
+    <md-card-subtitle>{{tournament.location}}</md-card-subtitle>
+    <md-card-subtitle>{{tournament.size}} teams</md-card-subtitle>
+    <md-card-content class="tournament-body">
+      <div>{{tournament.startDate}} - {{tournament.endDate}}</div>
+      <div>{{tournament.size}} teams</div>
+      <div>{{tournament.description}}</div>
+      <div>Register by: {{tournament.registrationDeadline}}</div>
+    </md-card-content>
+    <md-card-actions>
+      <button md-raised-button color="primary">Register</button>
+      <button md-raised-button>Register to captain</button>
+    </md-card-actions>
+  </md-card>
+</div>
+<div *ngIf="!tournaments">Loading...</div>

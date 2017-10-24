@@ -1,8 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Tournament} from "../../models/Tournament";
+import {HttpService} from "../../services/HttpService";
 
 @Component({
-    selector: 'tournaments',
-    templateUrl: 'tournaments.component.html',
-
+  selector: 'tournaments',
+  templateUrl: 'tournaments.component.html',
+  styleUrls: ['tournaments.component.scss']
 })
-export class TournamentsComponent { }
+export class TournamentsComponent implements OnInit {
+  constructor(
+    @Inject(HttpService) private http: HttpService
+  ) { }
+
+  public tournaments: Tournament[];
+
+  ngOnInit(): void {
+    this.http.get("tournaments")
+      .subscribe(resp => this.tournaments = resp.json());
+  }
+}
