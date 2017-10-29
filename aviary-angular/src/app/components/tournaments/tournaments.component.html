@@ -1,18 +1,19 @@
 <h2>Tournaments</h2>
 <div class="tournaments-list">
   <md-card *ngFor="let tournament of tournaments" class="tournament">
-    <md-card-title>{{tournament.name}}</md-card-title>
-    <md-card-subtitle>{{tournament.location}}</md-card-subtitle>
-    <md-card-subtitle>{{tournament.size}} teams</md-card-subtitle>
+    <md-card-header>
+      <img md-card-avatar src="https://dubrovniktours.tours/admin/kcfinder/upload/images/izlet_19_1496487045.jpg">
+      <md-card-title>{{tournament.name}}</md-card-title>
+      <md-card-subtitle>{{tournament.size}} teams · {{tournament.location}}</md-card-subtitle>
+    </md-card-header>
     <md-card-content class="tournament-body">
-      <div>{{tournament.startDate}} - {{tournament.endDate}}</div>
-      <div>{{tournament.size}} teams</div>
+      <div>{{tournament.startDate | date}} - {{tournament.endDate | date}}</div>
       <div>{{tournament.description}}</div>
-      <div>Register by: {{tournament.registrationDeadline}}</div>
+      <div>Register by: {{tournament.registrationDeadline | date}}</div>
     </md-card-content>
-    <md-card-actions>
+    <md-card-actions align="end">
       <button md-raised-button color="primary">Register</button>
-      <button md-raised-button>Register to captain</button>
+      <button md-raised-button>Apply as manager</button>
     </md-card-actions>
   </md-card>
 </div>
