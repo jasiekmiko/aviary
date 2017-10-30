@@ -19,3 +19,5 @@ temp-testng-customsuite.xml
 test-output
 .externalToolBuilders
 *~
+
+/src/main/java/generated
