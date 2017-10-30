@@ -11,4 +11,6 @@
   <include file="changelogs/0004-PopulateUserTable.xml" relativeToChangelogFile="true"/>
   <include file="changelogs/0005-CreateTournamentsTable.xml" relativeToChangelogFile="true"/>
   <include file="changelogs/0006-PopulateTournamentsTable.xml" relativeToChangelogFile="true"/>
+  <include file="changelogs/0007-CreateTournamentAttendeesTable.xml" relativeToChangelogFile="true"/>
+  <include file="changelogs/0008-PopulateTournamentAttendeesTable.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

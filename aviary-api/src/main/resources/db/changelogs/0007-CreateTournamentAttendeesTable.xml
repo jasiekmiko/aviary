@@ -1,0 +1,17 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+  <changeSet id="0007" author="jan@bluehawkqs.eu">
+    <createTable tableName="tournament_attendees">
+      <column name="attendee" type="int">
+        <constraints nullable="false" foreignKeyName="fk_tournament_attendee_person" references="persons(id)"/>
+      </column>
+      <column name="tournament" type="int">
+        <constraints nullable="false" foreignKeyName="fk_tournament_attendee_tournament" references="tournaments(id)"/>
+      </column>
+    </createTable>
+    <addPrimaryKey tableName="tournament_attendees" columnNames="tournament, attendee" />
+  </changeSet>
+</databaseChangeLog>
