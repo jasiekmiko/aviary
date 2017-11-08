@@ -1,17 +1,20 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import eu.bluehawkqs.aviary.api.di.AviaryComponent
-import javax.servlet.annotation.WebServlet
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import javax.servlet.ServletContext
+import javax.ws.rs.GET
+import javax.ws.rs.Path
+import javax.ws.rs.core.Context
 
 
-@WebServlet(name = "Status", value = "/api/status")
-class StatusController : AviaryController() {
-    override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
-        val aviaryComponent = this.servletContext.getAttribute("aviaryComponent") as AviaryComponent
-        res.writer.write("Status: OK\n")
-        res.writer.write("Author: ${aviaryComponent.authorName()}\n")
-        res.writer.write("Environment: ${aviaryComponent.config().getProperty("env")}\n")
+@Path("status")
+class StatusController (@Context context:ServletContext): AviaryController2(context) {
+    private var authorName = aviaryComponent.authorName()
+    private var env = aviaryComponent.config().getProperty("env")
+
+    @GET
+    fun doGet(): String {
+        return "Status: OK\n" +
+                "Author: $authorName\n" +
+                "Environment: $env\n"
     }
 }

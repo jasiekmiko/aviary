@@ -147,6 +147,11 @@ limitations under the License.
       <artifactId>cfg4j-core</artifactId>
       <version>4.4.0</version>
     </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet</artifactId>
+      <version>2.2</version>
+    </dependency>
   </dependencies>
 
   <build>
