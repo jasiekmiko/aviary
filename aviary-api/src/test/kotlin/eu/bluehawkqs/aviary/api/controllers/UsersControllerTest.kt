@@ -1,28 +1,23 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import com.google.api.client.http.HttpStatusCodes
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
-import eu.bluehawkqs.aviary.api.models.Person
 import eu.bluehawkqs.aviary.api.dao.UsersDao
 import eu.bluehawkqs.aviary.api.di.AviaryComponent
-import eu.bluehawkqs.aviary.api.models.AviaryUser
 import org.junit.After
-import org.junit.Test
-import org.mockito.Mockito.*
+import org.junit.Before
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
+import java.io.ByteArrayOutputStream
+import java.io.PrintWriter
+import javax.servlet.ServletContext
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import org.junit.Before
-import org.assertj.core.api.Assertions.assertThat
-import java.io.*
-import java.time.LocalDate
-import javax.servlet.ServletConfig
-import javax.servlet.ServletContext
 
 
 class UsersControllerTest {
     private val helper = LocalServiceTestHelper(LocalDatastoreServiceTestConfig())
-    private val controller = UsersController()
+    private lateinit var controller: UsersController
     private val req = mock(HttpServletRequest::class.java)
     private val resp = mock(HttpServletResponse::class.java)
     private val output = ByteArrayOutputStream()
@@ -36,9 +31,7 @@ class UsersControllerTest {
         val aviaryComponent = mock(AviaryComponent::class.java)
         val context = mock(ServletContext::class.java)
         `when`(context.getAttribute("aviaryComponent")).thenReturn(aviaryComponent)
-        val config = mock(ServletConfig::class.java)
-        `when`(config.servletContext).thenReturn(context)
-        controller.init(config)
+        controller = UsersController(context)
 
         `when`(aviaryComponent.usersDao()).thenReturn(mockUserDao)
 

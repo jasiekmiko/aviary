@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import dagger.Module
 import dagger.Provides
 
+//TODO remove
 @Module
 class SerialisationModule {
     @Provides fun jsonMapper(): ObjectMapper {

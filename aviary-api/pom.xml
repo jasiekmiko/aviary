@@ -143,6 +143,11 @@ limitations under the License.
       <version>${jackson-version}</version>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.jaxrs</groupId>
+      <artifactId>jackson-jaxrs-json-provider</artifactId>
+      <version>${jackson-version}</version>
+    </dependency>
+    <dependency>
       <groupId>org.cfg4j</groupId>
       <artifactId>cfg4j-core</artifactId>
       <version>4.4.0</version>

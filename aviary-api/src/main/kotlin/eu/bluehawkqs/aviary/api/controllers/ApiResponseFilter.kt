@@ -4,7 +4,6 @@ import javax.ws.rs.container.ContainerRequestContext
 import javax.ws.rs.container.ContainerResponseContext
 import javax.ws.rs.container.ContainerResponseFilter
 
-@Suppress("unused") // It's registered as a filter in web.xml
 class ApiResponseFilter : ContainerResponseFilter {
     override fun filter(requestContext: ContainerRequestContext, responseContext: ContainerResponseContext) {
         responseContext.headers.apply {

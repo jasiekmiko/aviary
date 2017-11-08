@@ -21,7 +21,7 @@
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
-      <param-value>eu.bluehawkqs.aviary.api.controllers</param-value>
+      <param-value>eu.bluehawkqs.aviary.api.controllers;com.fasterxml.jackson.jaxrs.json</param-value>
     </init-param>
     <init-param>
       <!-- speed up initial Jersey loading by deactivating WADL -->
@@ -30,7 +30,11 @@
     </init-param>
     <init-param>
       <param-name>jersey.config.server.provider.classnames</param-name>
-      <param-value>eu.bluehawkqs.aviary.api.controllers.ApiResponseFilter;org.glassfish.jersey.filter.LoggingFilter</param-value>
+      <param-value>
+        eu.bluehawkqs.aviary.api.controllers.ApiResponseFilter,
+        org.glassfish.jersey.filter.LoggingFilter,
+        eu.bluehawkqs.aviary.api.controllers.JacksonProvider
+      </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
