@@ -1,24 +1,27 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import com.google.api.client.http.HttpStatusCodes
-import eu.bluehawkqs.aviary.api.dao.PlayersDao
-import eu.bluehawkqs.aviary.api.di.AviaryComponent
-import javax.servlet.annotation.WebServlet
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import eu.bluehawkqs.aviary.api.models.Person
+import javax.servlet.ServletContext
+import javax.ws.rs.GET
+import javax.ws.rs.POST
+import javax.ws.rs.Path
+import javax.ws.rs.core.Context
 
-// TODO set up tournament id parameter "/api/tournaments/:id"
-@WebServlet(name = "Tournament", value = "/api/tournament")
-class TournamentController : AviaryController() {
-    override fun depInjInit(aviaryComponent: AviaryComponent) {
-        playersDao = aviaryComponent.playersDao()
+@Path("tournaments/{tournamentId}/players")
+class TournamentController(@Context context: ServletContext) : AviaryController2(context) {
+    private val playersDao = aviaryComponent.playersDao()
+
+    @GET
+    fun doGet(): List<Person> {
+        return playersDao.getAllByTournament(1)
     }
 
-    private lateinit var playersDao: PlayersDao
-
-    public override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
-        resp.status = HttpStatusCodes.STATUS_CODE_OK
-        mapper.writeValue(resp.writer, playersDao.getAllByTournament(1))
+    @POST
+    fun doPost(tournamentPlayerIds: TournamentPlayerIds) {
+        val (tournamentId, personId) = tournamentPlayerIds
+        playersDao.addPlayerToTournament(personId, tournamentId)
     }
 
 }
+
+data class TournamentPlayerIds(val tournamentId: Int, val personId: Int)

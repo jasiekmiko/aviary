@@ -1,6 +1,8 @@
 package eu.bluehawkqs.aviary.api.dao
 
 import eu.bluehawkqs.aviary.api.dao.aviary.Tables.*
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.TournamentAttendees
+import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.TournamentAttendeesRecord
 import eu.bluehawkqs.aviary.api.models.Person
 import org.jooq.SQLDialect
 import org.jooq.impl.DSL
@@ -31,6 +33,14 @@ class PlayersDao @Inject constructor(private val ds: DataSource) {
                                 it[PERSONS.GENDER]
                         )
                     }
+        }
+    }
+
+    fun addPlayerToTournament(personId: Int, tournamentId: Int) {
+        ds.connection.use { conn ->
+            val create = DSL.using(conn, SQLDialect.MYSQL)
+            val tournamentPlayer = TournamentAttendeesRecord(personId, tournamentId)
+            create.newRecord(TOURNAMENT_ATTENDEES, tournamentPlayer).store()
         }
     }
 }
