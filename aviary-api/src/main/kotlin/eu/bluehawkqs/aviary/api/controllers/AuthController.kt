@@ -2,24 +2,26 @@ package eu.bluehawkqs.aviary.api.controllers
 
 import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
+import javax.servlet.ServletContext
 import javax.servlet.ServletException
-import javax.servlet.annotation.WebServlet
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
+import javax.ws.rs.GET
+import javax.ws.rs.HeaderParam
+import javax.ws.rs.Path
+import javax.ws.rs.core.Context
 
 
-@WebServlet(name = "Auth", value = "/api/auth")
-class AuthController : AviaryController() {
+@Path("auth")
+class AuthController(@Context context: ServletContext) : AviaryController2(context) {
+    @HeaderParam("Authorization")
+    var authHeader: String? = null
 
-
+    @GET
     @Throws(ServletException::class, IOException::class)
-    override fun doGet(req: HttpServletRequest, resp: HttpServletResponse) {
-
-        val authHeader = req.getHeader("Authorization")
+    fun doGet(): String {
         if (authHeader == null) {
-            resp.writer.write("Empty auth token received")
+            return "Empty auth token received"
         } else {
-            val token = authHeader.substringAfter("Bearer ")
+            val token = authHeader!!.substringAfter("Bearer ")
             // TODO implement proper async stuff
             val completedTask = {
                 val task = FirebaseAuth
@@ -30,10 +32,10 @@ class AuthController : AviaryController() {
                 }
                 task
             }()
-            if (completedTask.isSuccessful) {
-                resp.writer.write("User ID:" + completedTask.result.uid)
+            return if (completedTask.isSuccessful) {
+                "User ID:" + completedTask.result.uid
             } else {
-                resp.writer.write("Authentication failed: " + completedTask.exception)
+                "Authentication failed: " + completedTask.exception
             }
         }
     }
