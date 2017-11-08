@@ -7,9 +7,9 @@ import javax.ws.rs.core.Context
 
 
 @Path("status")
-class StatusController (@Context context:ServletContext): AviaryController2(context) {
-    private var authorName = aviaryComponent.authorName()
-    private var env = aviaryComponent.config().getProperty("env")
+class StatusController (@Context context:ServletContext): AviaryController(context) {
+    private var authorName = di.authorName()
+    private var env = di.config().getProperty("env")
 
     @GET
     fun doGet(): String {

@@ -11,7 +11,7 @@ import javax.ws.rs.core.Context
 
 
 @Path("auth")
-class AuthController(@Context context: ServletContext) : AviaryController2(context) {
+class AuthController(@Context context: ServletContext) : AviaryController(context) {
     @HeaderParam("Authorization")
     var authHeader: String? = null
 

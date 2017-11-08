@@ -7,8 +7,8 @@ import javax.ws.rs.Path
 import javax.ws.rs.core.Context
 
 @Path("tournaments")
-class TournamentsController(@Context context: ServletContext) : AviaryController2(context) {
-    private val tournamentsDao = aviaryComponent.tournamentsDao()
+class TournamentsController(@Context context: ServletContext) : AviaryController(context) {
+    private val tournamentsDao = di.tournamentsDao()
 
     @GET
     fun doGet(): List<Tournament> {

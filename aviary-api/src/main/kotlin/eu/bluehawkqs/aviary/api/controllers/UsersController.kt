@@ -10,8 +10,8 @@ import javax.ws.rs.Produces
 import javax.ws.rs.core.Context
 
 @Path("users")
-class UsersController(@Context context: ServletContext) : AviaryController2(context) {
-    private val usersDao = aviaryComponent.usersDao()
+class UsersController(@Context context: ServletContext) : AviaryController(context) {
+    private val usersDao = di.usersDao()
 
     @GET
     @Produces("application/json")
