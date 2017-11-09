@@ -7,7 +7,9 @@ import javax.servlet.ServletException
 import javax.ws.rs.GET
 import javax.ws.rs.HeaderParam
 import javax.ws.rs.Path
+import javax.ws.rs.Produces
 import javax.ws.rs.core.Context
+import javax.ws.rs.core.MediaType
 
 
 @Path("auth")
@@ -16,6 +18,7 @@ class AuthController(@Context context: ServletContext) : AviaryController(contex
     var authHeader: String? = null
 
     @GET
+    @Produces(MediaType.TEXT_PLAIN)
     @Throws(ServletException::class, IOException::class)
     fun doGet(): String {
         if (authHeader == null) {

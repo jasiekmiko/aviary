@@ -14,13 +14,11 @@ class UsersController(@Context context: ServletContext) : AviaryController(conte
     private val usersDao = di.usersDao()
 
     @GET
-    @Produces("application/json")
     fun doGet(): List<AviaryUser> {
         return usersDao.getAll()
     }
 
     @POST
-    @Consumes("application/json")
     fun doPost(newUser: AviaryUser) {
         usersDao.addUser(newUser)
     }
