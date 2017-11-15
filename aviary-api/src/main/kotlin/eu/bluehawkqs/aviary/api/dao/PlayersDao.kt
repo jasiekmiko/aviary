@@ -1,10 +1,10 @@
 package eu.bluehawkqs.aviary.api.dao
 
 import eu.bluehawkqs.aviary.api.dao.aviary.Tables.*
-import eu.bluehawkqs.aviary.api.dao.aviary.tables.TournamentAttendees
 import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.TournamentAttendeesRecord
 import eu.bluehawkqs.aviary.api.models.Person
 import org.jooq.SQLDialect
+import org.jooq.exception.DataAccessException
 import org.jooq.impl.DSL
 import javax.inject.Inject
 import javax.sql.DataSource
@@ -40,7 +40,13 @@ class PlayersDao @Inject constructor(private val ds: DataSource) {
         ds.connection.use { conn ->
             val create = DSL.using(conn, SQLDialect.MYSQL)
             val tournamentPlayer = TournamentAttendeesRecord(personId, tournamentId)
-            create.newRecord(TOURNAMENT_ATTENDEES, tournamentPlayer).store()
+            try {
+                create.newRecord(TOURNAMENT_ATTENDEES, tournamentPlayer).store()
+            } catch (e: DataAccessException) {
+                throw PlayerIsAlreadyAttendingTournament("Cannot add player $personId to tournament $tournamentId", e)
+            }
         }
     }
 }
+
+class PlayerIsAlreadyAttendingTournament(message: String, cause: Exception) : Exception(message, cause)

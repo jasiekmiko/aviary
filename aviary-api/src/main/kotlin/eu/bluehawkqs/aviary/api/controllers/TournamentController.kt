@@ -18,12 +18,8 @@ class TournamentController(@Context context: ServletContext) : AviaryController(
     }
 
     @POST
-    fun doPost(tournamentPlayerIds: TournamentPlayerIds) {
-        // TODO use tournamentId instead?
-        val (tournamentId, personId) = tournamentPlayerIds
-        playersDao.addPlayerToTournament(personId, tournamentId)
+    fun doPost(@PathParam("tournamentId") tournamentId: Int, playerId: Int) {
+        playersDao.addPlayerToTournament(playerId, tournamentId)
     }
 
 }
-
-data class TournamentPlayerIds(val tournamentId: Int, val personId: Int)
