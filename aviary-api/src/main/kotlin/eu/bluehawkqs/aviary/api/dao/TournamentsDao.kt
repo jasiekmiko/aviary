@@ -2,16 +2,14 @@ package eu.bluehawkqs.aviary.api.dao
 
 import eu.bluehawkqs.aviary.api.dao.aviary.Tables.TOURNAMENTS
 import eu.bluehawkqs.aviary.api.models.Tournament
-import org.jooq.SQLDialect
-import org.jooq.impl.DSL
 import javax.inject.Inject
-import javax.sql.DataSource
 
-class TournamentsDao @Inject constructor(private val ds: DataSource) {
+class TournamentsDao @Inject constructor(private val db: DbConnectionManager) {
     fun getAll(): List<Tournament> {
-        ds.connection.use { conn ->
-            val create = DSL.using(conn, SQLDialect.MYSQL)
-            return create.select().from(TOURNAMENTS).fetch().map {
+        return db.run {
+            it.selectFrom(TOURNAMENTS)
+                .fetch()
+                .map {
                 Tournament(
                         it[TOURNAMENTS.ID],
                         it[TOURNAMENTS.NAME],
