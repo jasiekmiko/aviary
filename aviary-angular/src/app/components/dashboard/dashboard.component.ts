@@ -3,20 +3,20 @@ import 'rxjs/add/operator/toPromise';
 import {HttpService} from "../../services/HttpService";
 
 @Component({
-    selector: 'dashboard',
-    templateUrl: 'dashboard.component.html',
+  selector: 'dashboard',
+  templateUrl: 'dashboard.component.html',
+  styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent {
-    constructor(
-        @Inject(HttpService) private http: HttpService
-    ) { }
+  constructor(@Inject(HttpService) private http: HttpService) {
+  }
 
-    result = "";
+  result = "";
 
-    test(){
-        return this.http.get("auth")
-            .subscribe(
-              response => this.result = response.text(),
-              error => this.result = error.message);
-    }
+  test() {
+    return this.http.get("auth")
+      .subscribe(
+        response => this.result = response.text(),
+        error => this.result = error.message);
+  }
 }

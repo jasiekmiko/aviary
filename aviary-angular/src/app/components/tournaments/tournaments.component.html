@@ -1,4 +1,4 @@
-<h2>Tournaments</h2>
+<h2 routerLink="/tournaments">Tournaments</h2>
 <div class="tournaments-list">
   <md-card *ngFor="let tournament of tournaments" class="tournament">
     <md-card-header>
@@ -15,7 +15,7 @@
     <md-card-actions align="end">
       <button md-raised-button color="primary">Register</button>
       <button md-raised-button>Apply as manager</button>
-      <a md-raised-button [routerLink]="tournament.id" >See players</a>
+      <a md-raised-button [routerLink]="['/', 'tournaments', tournament.id]" >See players</a>
     </md-card-actions>
   </md-card>
 </div>

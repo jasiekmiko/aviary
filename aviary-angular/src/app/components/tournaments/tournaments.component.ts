@@ -3,6 +3,7 @@ import {Tournament} from "../../models/Tournament";
 import {HttpService} from "../../services/HttpService";
 
 @Component({
+  exportAs: "tournaments",
   selector: 'tournaments',
   templateUrl: 'tournaments.component.html',
   styleUrls: ['tournaments.component.scss']
