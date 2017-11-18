@@ -9,11 +9,12 @@ import liquibase.resource.ClassLoaderResourceAccessor
 import com.zaxxer.hikari.HikariDataSource
 import com.zaxxer.hikari.HikariConfig
 import java.util.*
+import javax.inject.Singleton
 import javax.sql.DataSource
 
 @Module
 class DatabaseModule {
-    @Provides fun database(properties: Properties) : DataSource {
+    @Provides @Singleton fun database(properties: Properties) : DataSource {
         val config = HikariConfig()
         config.jdbcUrl = properties.getProperty("db.url")
         config.username = properties.getProperty("db.username")

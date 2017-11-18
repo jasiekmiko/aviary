@@ -9,11 +9,12 @@ import org.cfg4j.source.classpath.ClasspathConfigurationSource
 import org.cfg4j.source.context.environment.ImmutableEnvironment
 import java.nio.file.Paths
 import java.util.*
+import javax.inject.Singleton
 
 
 @Module
 class ConfigModule {
-    @Provides
+    @Provides @Singleton
     fun configProvider(): Properties {
         val configFilesProvider = { arrayListOf(Paths.get("application.properties")) }
         val source = ClasspathConfigurationSource(configFilesProvider)

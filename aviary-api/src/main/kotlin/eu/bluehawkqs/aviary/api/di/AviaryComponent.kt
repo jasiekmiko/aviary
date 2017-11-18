@@ -6,7 +6,9 @@ import eu.bluehawkqs.aviary.api.dao.PlayersDao
 import eu.bluehawkqs.aviary.api.dao.TournamentsDao
 import eu.bluehawkqs.aviary.api.dao.UsersDao
 import java.util.Properties
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = arrayOf(
         AviaryModule::class,
         DatabaseModule::class,
