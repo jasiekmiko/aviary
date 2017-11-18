@@ -19,6 +19,7 @@ import {CurrentUserComponent} from "./components/account-management/current-user
 import {HttpService} from "./services/HttpService";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireAuth} from "angularfire2/auth";
+import { TournamentComponent } from './components/tournament/tournament.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2L4Vmi5vur0F0Fp9i58rZldtkDZxY_dQ",
@@ -36,6 +37,7 @@ const firebaseConfig = {
     LoginComponent,
     RegisterComponent,
     AccountComponent,
+    TournamentComponent,
   ],
   imports: [
     BrowserModule,

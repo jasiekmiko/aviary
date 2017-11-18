@@ -2,6 +2,7 @@
 <div class="tournaments-list">
   <md-card *ngFor="let tournament of tournaments" class="tournament">
     <md-card-header>
+      <!--TODO image link from the db-->
       <img md-card-avatar src="https://dubrovniktours.tours/admin/kcfinder/upload/images/izlet_19_1496487045.jpg">
       <md-card-title>{{tournament.name}}</md-card-title>
       <md-card-subtitle>{{tournament.size}} teams · {{tournament.location}}</md-card-subtitle>
@@ -14,6 +15,7 @@
     <md-card-actions align="end">
       <button md-raised-button color="primary">Register</button>
       <button md-raised-button>Apply as manager</button>
+      <a md-raised-button [routerLink]="tournament.id" >See players</a>
     </md-card-actions>
   </md-card>
 </div>

@@ -4,6 +4,7 @@ import {TournamentsComponent} from "./components/tournaments/tournaments.compone
 import {LoginComponent} from "./components/account-management/login/login.component";
 import {RegisterComponent} from "./components/account-management/register/register.component";
 import {AccountComponent} from "./components/account-management/account/account.component";
+import {TournamentComponent} from "./components/tournament/tournament.component";
 
 const appRoutes: Routes = [
     {
@@ -13,6 +14,10 @@ const appRoutes: Routes = [
     {
         path: 'tournaments',
         component: TournamentsComponent
+    },
+    {
+        path: 'tournaments/:id',
+        component: TournamentComponent
     },
     {
         path: 'login',

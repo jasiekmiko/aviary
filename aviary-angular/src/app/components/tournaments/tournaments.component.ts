@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Tournament} from "../../models/Tournament";
 import {HttpService} from "../../services/HttpService";
 
@@ -8,9 +8,8 @@ import {HttpService} from "../../services/HttpService";
   styleUrls: ['tournaments.component.scss']
 })
 export class TournamentsComponent implements OnInit {
-  constructor(
-    @Inject(HttpService) private http: HttpService
-  ) { }
+  constructor(private http: HttpService) {
+  }
 
   public tournaments: Tournament[];
 
