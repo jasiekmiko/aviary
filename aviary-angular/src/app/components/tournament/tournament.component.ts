@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../../services/HttpService";
 import {ActivatedRoute} from "@angular/router";
 import {Person} from "../../models/AviaryUser";
+import {Tournament} from "../../models/Tournament";
+import {TournamentDetails} from "../../models/TournamentDetails";
 
 @Component({
   selector: 'app-tournament',
@@ -13,15 +15,27 @@ export class TournamentComponent implements OnInit {
   }
 
   private tournamentId: number;
+  public tournament: Tournament;
   public players: Person[];
+  joinSuccess = () => {
+    // TODO get real data here from user object once it exists
+    //this.players.push(new Person("New", "Person", "26/04/1993", "male"))
+    this.loadData()
+  };
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.tournamentId = params['id'];
-      this.http.get(`tournaments/${this.tournamentId}/players`)
-        .subscribe(resp => this.players = resp.json());
+      this.loadData();
     });
 
   }
 
+  private loadData() {
+    this.http.get<TournamentDetails>(`tournaments/${this.tournamentId}/players`)
+      .subscribe(resp => {
+        this.players = resp.players;
+        this.tournament = resp.tournament;
+      });
+  }
 }

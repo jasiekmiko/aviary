@@ -1,7 +1,7 @@
 package eu.bluehawkqs.aviary.api.controllers
 
 import com.google.firebase.auth.FirebaseAuth
-import eu.bluehawkqs.aviary.api.models.Person
+import eu.bluehawkqs.aviary.api.models.TournamentDetails
 import java.lang.Exception
 import javax.servlet.ServletContext
 import javax.ws.rs.GET
@@ -14,11 +14,30 @@ import javax.ws.rs.core.Context
 @Path("tournaments/{tournamentId}/players")
 class TournamentController(@Context context: ServletContext) : AviaryController(context) {
     private val playersDao = di.playersDao()
+    private val tournamentsDao = di.tournamentsDao()
     private val usersDao = di.usersDao()
 
     @GET
-    fun doGet(@PathParam("tournamentId") tournamentId: Int): List<Person> {
-        return playersDao.getAllByTournament(tournamentId)
+    fun doGet(@PathParam("tournamentId") tournamentId: Int, @HeaderParam("Authorization") authHeader: String): TournamentDetails {
+        val token = authHeader.substringAfter("Bearer ")
+        // TODO implement proper async stuff
+        val completedTask = {
+            val task = FirebaseAuth
+                .getInstance()
+                .verifyIdToken(token)
+            while (!task.isComplete) {
+                Thread.sleep(1000)
+            }
+            task
+        }()
+        val user = if (completedTask.isSuccessful) {
+            usersDao.getByFirebaseID(completedTask.result.uid)
+        } else {
+            throw Exception("Authentication failed", completedTask.exception)
+        }
+        return TournamentDetails(
+            playersDao.getAllByTournament(tournamentId),
+            tournamentsDao.get(tournamentId, user))
     }
 
     @POST

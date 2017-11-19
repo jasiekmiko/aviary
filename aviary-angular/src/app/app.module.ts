@@ -1,12 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MdInputModule, MdButtonModule, MdCardModule, MdDatepickerModule, MdNativeDateModule,
-  MAT_DATE_LOCALE, MdToolbarModule
+  MAT_DATE_LOCALE,
+  MdButtonModule,
+  MdCardModule,
+  MdDatepickerModule,
+  MdInputModule,
+  MdNativeDateModule,
+  MdToolbarModule
 } from '@angular/material';
 
-import { AppComponent } from './components/app/app.component';
+import {AppComponent} from './components/app/app.component';
 import {HttpModule} from "@angular/http";
 import {routing} from "./app.routing";
 import {FormsModule} from "@angular/forms";
@@ -19,7 +24,8 @@ import {CurrentUserComponent} from "./components/account-management/current-user
 import {HttpService} from "./services/HttpService";
 import {AngularFireModule} from "angularfire2";
 import {AngularFireAuth} from "angularfire2/auth";
-import { TournamentComponent } from './components/tournament/tournament.component';
+import {TournamentComponent} from './components/tournament/tournament.component';
+import {JoinTournamentButtonComponent} from './components/join-tournament-button/join-tournament-button.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB2L4Vmi5vur0F0Fp9i58rZldtkDZxY_dQ",
@@ -38,6 +44,7 @@ const firebaseConfig = {
     RegisterComponent,
     AccountComponent,
     TournamentComponent,
+    JoinTournamentButtonComponent,
   ],
   imports: [
     BrowserModule,

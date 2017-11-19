@@ -2,4 +2,5 @@
   Tournament
   <!-- TODO get tournament details on this page, too -->
 </h2>
+<join-tournament-button [tournament]="tournament" [onSuccess]="joinSuccess"></join-tournament-button>
 <p *ngFor="let player of players">{{player.firstName}} {{player.lastName}}</p>

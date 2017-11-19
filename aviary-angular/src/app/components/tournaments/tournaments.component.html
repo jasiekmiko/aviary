@@ -13,13 +13,7 @@
       <div>Register by: {{tournament.registrationDeadline | date}}</div>
     </md-card-content>
     <md-card-actions align="end">
-      <!-- TODO show joined status -->
-      <button *ngIf="!tournament.currentUserAttending" md-raised-button color="primary"
-              (click)="joinTournament(tournament.id)">Join
-      </button>
-      <button *ngIf="tournament.currentUserAttending" md-raised-button color="primary"
-              [routerLink]="['/', 'tournaments', tournament.id]">Attending
-      </button>
+      <join-tournament-button [tournament]="tournament"></join-tournament-button>
       <button md-raised-button>Apply as manager</button>
       <a md-raised-button [routerLink]="['/', 'tournaments', tournament.id]">See players</a>
     </md-card-actions>

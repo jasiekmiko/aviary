@@ -1,12 +1,5 @@
 import {Inject} from '@angular/core';
-import {
-  Http,
-  XHRBackend,
-  RequestOptions,
-  RequestOptionsArgs,
-  Response,
-  Headers
-} from '@angular/http';
+import {Headers, Http, RequestOptions, RequestOptionsArgs, Response, XHRBackend} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -21,10 +14,11 @@ export class HttpService extends Http {
     super(backend, options);
   }
 
-  get(route: string, options: RequestOptionsArgs = {headers: new Headers()}): Observable<Response> {
+  get<T>(route: string, options: RequestOptionsArgs = {headers: new Headers()}): Observable<T> {
     return this.setAuthorizationHeader(options)
       .flatMap(options => super.get(HttpService.createApiUrl(route), options))
       .catch(this.catchAuthError)
+      .map((resp: Response) => resp.json())
   }
 
   post(route: string, body: any, options: RequestOptionsArgs = {headers: new Headers()}): Observable<Response> {
