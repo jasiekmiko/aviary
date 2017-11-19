@@ -45,6 +45,7 @@ export class HttpService extends Http {
       return Observable.fromPromise(user.getIdToken() as Promise<string>)
     }).map((token: string) => {
       options.headers.set('Authorization', `Bearer ${token}`);
+      options.headers.set('Content-Type', `application/json`);
       return options;
     });
   }

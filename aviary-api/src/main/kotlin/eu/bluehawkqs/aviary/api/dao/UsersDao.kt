@@ -43,4 +43,14 @@ class UsersDao @Inject constructor(private val db: DbConnectionManager) {
         }
     }
 
+    fun getByFirebaseID(uid: String): Int {
+        return db.run {
+            it.fetchValue(
+                it.select(USERS.PERSON_ID)
+                    .from(USERS)
+                    .where(USERS.FIREBASE_ID.eq(uid))
+            )
+        }
+    }
+
 }

@@ -13,7 +13,8 @@
       <div>Register by: {{tournament.registrationDeadline | date}}</div>
     </md-card-content>
     <md-card-actions align="end">
-      <button md-raised-button color="primary">Register</button>
+      <!-- TODO show joined status -->
+      <button md-raised-button color="primary" (click)="joinTournament(tournament.id)">Join</button>
       <button md-raised-button>Apply as manager</button>
       <a md-raised-button [routerLink]="['/', 'tournaments', tournament.id]" >See players</a>
     </md-card-actions>

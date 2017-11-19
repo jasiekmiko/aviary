@@ -5,6 +5,8 @@ import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.TournamentAttendeesRec
 import eu.bluehawkqs.aviary.api.models.Person
 import org.jooq.exception.DataAccessException
 import javax.inject.Inject
+import javax.ws.rs.WebApplicationException
+import javax.ws.rs.core.Response
 
 class PlayersDao @Inject constructor(private val db: DbConnectionManager) {
     fun getAllByTournament(tournamentId: Int): List<Person> {
@@ -44,4 +46,5 @@ class PlayersDao @Inject constructor(private val db: DbConnectionManager) {
     }
 }
 
-class PlayerIsAlreadyAttendingTournament(message: String, cause: Exception) : Exception(message, cause)
+class PlayerIsAlreadyAttendingTournament(message: String, cause: Exception)
+    : WebApplicationException(message, cause, Response.Status.CONFLICT)
