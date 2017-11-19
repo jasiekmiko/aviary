@@ -20,6 +20,6 @@ export class TournamentsComponent implements OnInit {
 
   joinTournament = (id: number) => {
     return this.http.post(`tournaments/${id}/players`, null)
-      .subscribe(resp => console.log(resp))
+      .subscribe(() => this.tournaments.find(t => t.id == id).currentUserAttending = true)
   };
 }

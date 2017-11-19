@@ -1,0 +1,8 @@
+<div *ngIf="tournament">
+  <button *ngIf="!tournament.currentUserAttending" md-raised-button color="primary"
+          (click)="joinTournament(tournament.id)">Join
+  </button>
+  <button *ngIf="tournament.currentUserAttending" md-raised-button color="primary"
+          [routerLink]="['/', 'tournaments', tournament.id]">Attending
+  </button>
+</div>

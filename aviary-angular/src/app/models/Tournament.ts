@@ -6,6 +6,7 @@ export class Tournament {
               public startDate: Date,
               public endDate: Date,
               public registrationDeadline: Date,
-              public size: number) {
+              public size: number,
+              public currentUserAttending: boolean) {
   }
 }
