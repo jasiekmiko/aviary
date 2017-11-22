@@ -33,10 +33,10 @@ export class HttpService extends Http {
 
   private setAuthorizationHeader(options: RequestOptionsArgs) {
     return this.auth.authState.flatMap((user: User | null) => {
-      if (user == null) {
-        throw new Error("AviaryUser is not logged in")
+      if (user != null) {
+        return Observable.fromPromise(user.getIdToken() as Promise<string>)
       }
-      return Observable.fromPromise(user.getIdToken() as Promise<string>)
+      else return Observable.from([""])
     }).map((token: string) => {
       options.headers.set('Authorization', `Bearer ${token}`);
       options.headers.set('Content-Type', `application/json`);
