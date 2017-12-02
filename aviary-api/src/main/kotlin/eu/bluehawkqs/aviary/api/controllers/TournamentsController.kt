@@ -1,10 +1,9 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import eu.bluehawkqs.aviary.api.authentication.FirebaseAuth
+import eu.bluehawkqs.aviary.api.authentication.Secured
 import eu.bluehawkqs.aviary.api.models.Tournament
 import javax.servlet.ServletContext
 import javax.ws.rs.GET
-import javax.ws.rs.HeaderParam
 import javax.ws.rs.Path
 import javax.ws.rs.core.Context
 
@@ -14,10 +13,10 @@ class TournamentsController(@Context context: ServletContext) : AviaryController
     private val usersDao = di.usersDao()
 
     @GET
-    fun getAllTournaments(@HeaderParam("Authorization") authHeader: String): List<Tournament> {
-        val token = authHeader.substringAfter("Bearer ")
-        val uid = FirebaseAuth.verifyIdToken(token).uid
-        val currentUserId = usersDao.getUserIdByFirebaseID(uid)
+    @Secured
+    fun getAllTournaments(): List<Tournament> {
+        // TODO Allow non-authorized users access to basic info
+        val currentUserId = usersDao.getUserIdByFirebaseID(currentUserId!!)
         return tournamentsDao.getAll(currentUserId)
     }
 

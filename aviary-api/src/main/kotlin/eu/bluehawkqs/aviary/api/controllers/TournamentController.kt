@@ -1,10 +1,9 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import eu.bluehawkqs.aviary.api.authentication.FirebaseAuth
+import eu.bluehawkqs.aviary.api.authentication.Secured
 import eu.bluehawkqs.aviary.api.models.TournamentDetails
 import javax.servlet.ServletContext
 import javax.ws.rs.GET
-import javax.ws.rs.HeaderParam
 import javax.ws.rs.POST
 import javax.ws.rs.Path
 import javax.ws.rs.PathParam
@@ -17,24 +16,19 @@ class TournamentController(@Context context: ServletContext) : AviaryController(
     private val usersDao = di.usersDao()
 
     @GET
-    fun doGet(@PathParam("tournamentId") tournamentId: Int, @HeaderParam("Authorization") authHeader: String): TournamentDetails {
-        val token = authHeader.substringAfter("Bearer ")
-        val uid = FirebaseAuth.verifyIdToken(token).uid
-        val user = usersDao.getUserIdByFirebaseID(uid)
+    @Secured
+    fun doGet(@PathParam("tournamentId") tournamentId: Int): TournamentDetails {
+        // TODO allow non-authorized users access to basic info
+        val user = usersDao.getUserIdByFirebaseID(currentUserId!!)
         return TournamentDetails(
             playersDao.getAllByTournament(tournamentId),
             tournamentsDao.get(tournamentId, user))
     }
 
     @POST
-    fun doPost(@PathParam("tournamentId") tournamentId: Int, playerId: Int? = null, @HeaderParam("Authorization") authHeader: String) {
-        val id = if (playerId != null) {
-            playerId
-        } else {
-            val token = authHeader.substringAfter("Bearer ")
-            val uid = FirebaseAuth.verifyIdToken(token).uid
-            usersDao.getUserIdByFirebaseID(uid)
-        }
+    @Secured
+    fun doPost(@PathParam("tournamentId") tournamentId: Int, playerId: Int? = null) {
+        val id = playerId ?: usersDao.getUserIdByFirebaseID(currentUserId!!)
         playersDao.addPlayerToTournament(id, tournamentId)
     }
 

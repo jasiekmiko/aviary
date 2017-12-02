@@ -20,6 +20,7 @@
       <param-name>jersey.config.server.provider.classnames</param-name>
       <param-value>
         eu.bluehawkqs.aviary.api.controllers.ApiResponseFilter,
+        eu.bluehawkqs.aviary.api.authentication.AuthenticationFilter,
         org.glassfish.jersey.filter.LoggingFilter,
         eu.bluehawkqs.aviary.api.controllers.JacksonProvider
       </param-value>
