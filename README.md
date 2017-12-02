@@ -1,12 +1,10 @@
 # Aviary
 There are two components, aviary-api and aviary-angular with the front-end code.
-They are designed to run together as a single 
-[gae](https://cloud.google.com/appengine/docs/standard/java/runtime-java8)
-app, currently available at https://aviary-130922.appspot.com
+The aviary-angular module is an angular website, hosted on a static-files bucket.
+The aviary-api module is a [gae app](https://cloud.google.com/appengine/docs/standard/java/runtime-java8).
 
 ## Releasing
-1. Build the frontend (see its README)
-2. Deploy the backend (see its README), the deployment will include the front-end build
+The two modules need to be released separately, see respective READMES for instructions
 
 ## Services used
 Aviary uses 
@@ -36,4 +34,4 @@ To provide a range of sign-in options for users, aviary utilises firebase.
 ### A user authentication flow:
 1. Front-end talks directly to firebase to login a user, obtaining an auth token
 1. It passes the firebase id and token to the backend with requests
-1. The backed uses firebase sdk to authenticate the token
+1. The backed uses authenticates the token

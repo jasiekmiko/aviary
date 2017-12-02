@@ -1,5 +1,5 @@
 // noinspection JSUnusedGlobalSymbols
 export const environment = {
   production: true,
-  apiAddress: "/api/"
+  apiAddress: "https://aviary-130922.appspot.com/api/"
 };

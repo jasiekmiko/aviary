@@ -12,7 +12,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 Run `ng build` to build the project into  the `dist/` directory.
-`dist/` will be included in the server deployment as the frontend resources. Run before deploying.
+This `dist/` should be deployed to one of the website-hosting buckets in Google storage under the appropriate name.
 Use the `--env=prod` flag for a production build. Ideally we'd use the `--prod` flag which also turns AOT compilation
 on, but this throws an error at the time of writing.  
 

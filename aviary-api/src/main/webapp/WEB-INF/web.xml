@@ -4,16 +4,6 @@
     <listener-class>eu.bluehawkqs.aviary.api.di.DaggerServletContextListener</listener-class>
   </listener>
 
-
-  <servlet>
-    <servlet-name>Index</servlet-name>
-    <jsp-file>/index.html</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Index</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-
   <servlet>
     <servlet-name>Jersey Web Application</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -40,4 +30,5 @@
     <servlet-name>Jersey Web Application</servlet-name>
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
+
 </web-app>

@@ -44,8 +44,7 @@ To run the application:`mvn appengine:run`
 To use visit: http://localhost:8080/
 
 ### Deploying
-1. First, make sure aviary-angular has been built into its /dist folder.
-2. Set up a Google App Enginge Deployment (Tools -> Google Cloud Tools -> Deploy to App Engine)
+Set up a Google App Enginge Deployment (Tools -> Google Cloud Tools -> Deploy to App Engine)
    * As `Deployment:` select `Maven Build: aviary-api`
    * Log in to your google account and select the `aviary-130922` project
 
@@ -53,7 +52,7 @@ To use visit: http://localhost:8080/
 `mvn package appengine:deploy`
 might work, but it's not tested)
 
-To use vist:  https://aviary-130922.appspot.com
+The api gets deployed to: https://aviary-130922.appspot.com.
 
 ## Testing
 
