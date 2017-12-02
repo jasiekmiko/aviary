@@ -3,9 +3,7 @@
   <listener>
     <listener-class>eu.bluehawkqs.aviary.api.di.DaggerServletContextListener</listener-class>
   </listener>
-  <listener>
-    <listener-class>eu.bluehawkqs.aviary.api.firebase.FirebaseContextListener</listener-class>
-  </listener>
+
 
   <servlet>
     <servlet-name>Index</servlet-name>
