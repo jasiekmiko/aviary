@@ -1,4 +1,4 @@
-package eu.bluehawkqs.aviary.api.di
+package eu.bluehawkqs.aviary.di
 
 import dagger.Module
 import dagger.Provides

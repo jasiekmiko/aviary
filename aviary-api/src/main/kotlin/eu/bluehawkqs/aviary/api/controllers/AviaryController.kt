@@ -1,6 +1,6 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import eu.bluehawkqs.aviary.api.di.AviaryComponent
+import eu.bluehawkqs.aviary.di.AviaryComponent
 import javax.servlet.ServletContext
 import javax.ws.rs.Consumes
 import javax.ws.rs.Produces

@@ -1,8 +1,8 @@
-package eu.bluehawkqs.aviary.api.dao
+package eu.bluehawkqs.aviary.dao
 
-import eu.bluehawkqs.aviary.api.dao.aviary.Tables.TOURNAMENTS
-import eu.bluehawkqs.aviary.api.dao.aviary.Tables.TOURNAMENT_ATTENDEES
 import eu.bluehawkqs.aviary.api.models.Tournament
+import eu.bluehawkqs.aviary.dao.aviary.Tables.TOURNAMENTS
+import eu.bluehawkqs.aviary.dao.aviary.Tables.TOURNAMENT_ATTENDEES
 import javax.inject.Inject
 
 class TournamentsDao @Inject constructor(private val db: DbConnectionManager) {

@@ -1,8 +1,9 @@
-package eu.bluehawkqs.aviary.api.dao
+package eu.bluehawkqs.aviary.dao
 
-import eu.bluehawkqs.aviary.api.dao.aviary.Tables.*
-import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.TournamentAttendeesRecord
 import eu.bluehawkqs.aviary.api.models.Person
+import eu.bluehawkqs.aviary.dao.aviary.Tables.PERSONS
+import eu.bluehawkqs.aviary.dao.aviary.Tables.TOURNAMENT_ATTENDEES
+import eu.bluehawkqs.aviary.dao.aviary.tables.records.TournamentAttendeesRecord
 import org.jooq.exception.DataAccessException
 import javax.inject.Inject
 import javax.ws.rs.WebApplicationException

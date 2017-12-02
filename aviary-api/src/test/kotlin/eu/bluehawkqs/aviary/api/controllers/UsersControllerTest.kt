@@ -2,8 +2,8 @@ package eu.bluehawkqs.aviary.api.controllers
 
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
-import eu.bluehawkqs.aviary.api.dao.UsersDao
-import eu.bluehawkqs.aviary.api.di.AviaryComponent
+import eu.bluehawkqs.aviary.dao.UsersDao
+import eu.bluehawkqs.aviary.di.AviaryComponent
 import org.junit.After
 import org.junit.Before
 import org.mockito.Mockito.`when`

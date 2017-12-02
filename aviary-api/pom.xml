@@ -271,7 +271,7 @@ limitations under the License.
                   <includes>(?i:AVIARY\..*)</includes>
                 </database>
                 <target>
-                  <packageName>eu.bluehawkqs.aviary.api.dao</packageName>
+                  <packageName>eu.bluehawkqs.aviary.dao</packageName>
                   <directory>${project.basedir}/src/main/java/generated</directory>
                 </target>
               </generator>

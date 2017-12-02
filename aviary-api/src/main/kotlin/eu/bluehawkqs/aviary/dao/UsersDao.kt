@@ -1,10 +1,10 @@
-package eu.bluehawkqs.aviary.api.dao
+package eu.bluehawkqs.aviary.dao
 
-import eu.bluehawkqs.aviary.api.dao.aviary.tables.Persons.PERSONS
-import eu.bluehawkqs.aviary.api.dao.aviary.tables.Users.USERS
-import eu.bluehawkqs.aviary.api.dao.aviary.tables.records.UsersRecord
 import eu.bluehawkqs.aviary.api.models.AviaryUser
 import eu.bluehawkqs.aviary.api.models.Person
+import eu.bluehawkqs.aviary.dao.aviary.tables.Persons.PERSONS
+import eu.bluehawkqs.aviary.dao.aviary.tables.Users.USERS
+import eu.bluehawkqs.aviary.dao.aviary.tables.records.UsersRecord
 import org.jooq.impl.DSL
 import javax.inject.Inject
 

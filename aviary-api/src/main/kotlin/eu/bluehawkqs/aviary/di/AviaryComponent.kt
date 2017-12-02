@@ -1,11 +1,11 @@
-package eu.bluehawkqs.aviary.api.di
+package eu.bluehawkqs.aviary.di
 
 import dagger.Component
-import eu.bluehawkqs.aviary.api.dao.DbConnectionManager
-import eu.bluehawkqs.aviary.api.dao.PlayersDao
-import eu.bluehawkqs.aviary.api.dao.TournamentsDao
-import eu.bluehawkqs.aviary.api.dao.UsersDao
-import java.util.Properties
+import eu.bluehawkqs.aviary.dao.DbConnectionManager
+import eu.bluehawkqs.aviary.dao.PlayersDao
+import eu.bluehawkqs.aviary.dao.TournamentsDao
+import eu.bluehawkqs.aviary.dao.UsersDao
+import java.util.*
 import javax.inject.Singleton
 
 @Singleton

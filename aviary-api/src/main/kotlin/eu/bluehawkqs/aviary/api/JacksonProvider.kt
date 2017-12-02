@@ -1,4 +1,4 @@
-package eu.bluehawkqs.aviary.api.controllers
+package eu.bluehawkqs.aviary.api
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule

@@ -1,4 +1,4 @@
-package eu.bluehawkqs.aviary.api.di
+package eu.bluehawkqs.aviary.di
 
 import javax.servlet.ServletContextEvent
 import javax.servlet.ServletContextListener

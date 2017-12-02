@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <listener>
-    <listener-class>eu.bluehawkqs.aviary.api.di.DaggerServletContextListener</listener-class>
+    <listener-class>eu.bluehawkqs.aviary.di.DaggerServletContextListener</listener-class>
   </listener>
 
   <servlet>
@@ -19,10 +19,10 @@
     <init-param>
       <param-name>jersey.config.server.provider.classnames</param-name>
       <param-value>
-        eu.bluehawkqs.aviary.api.controllers.ApiResponseFilter,
+        eu.bluehawkqs.aviary.api.ApiResponseFilter,
         eu.bluehawkqs.aviary.api.authentication.AuthenticationFilter,
         org.glassfish.jersey.filter.LoggingFilter,
-        eu.bluehawkqs.aviary.api.controllers.JacksonProvider
+        eu.bluehawkqs.aviary.api.JacksonProvider
       </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>

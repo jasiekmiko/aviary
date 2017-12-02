@@ -1,7 +1,8 @@
-package eu.bluehawkqs.aviary.api.di
+package eu.bluehawkqs.aviary.di
 
 import com.google.appengine.api.utils.SystemProperty
-import com.google.appengine.api.utils.SystemProperty.Environment.Value.*
+import com.google.appengine.api.utils.SystemProperty.Environment.Value.Development
+import com.google.appengine.api.utils.SystemProperty.Environment.Value.Production
 import dagger.Module
 import dagger.Provides
 import org.cfg4j.provider.ConfigurationProviderBuilder

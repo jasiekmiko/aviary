@@ -1,4 +1,4 @@
-package eu.bluehawkqs.aviary.api.dao
+package eu.bluehawkqs.aviary.dao
 
 import org.junit.Test
 

@@ -1,13 +1,13 @@
-package eu.bluehawkqs.aviary.api.di
+package eu.bluehawkqs.aviary.di
 
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import dagger.Module
 import dagger.Provides
 import liquibase.Liquibase
 import liquibase.database.DatabaseFactory
 import liquibase.database.jvm.JdbcConnection
 import liquibase.resource.ClassLoaderResourceAccessor
-import com.zaxxer.hikari.HikariDataSource
-import com.zaxxer.hikari.HikariConfig
 import java.util.*
 import javax.inject.Singleton
 import javax.sql.DataSource

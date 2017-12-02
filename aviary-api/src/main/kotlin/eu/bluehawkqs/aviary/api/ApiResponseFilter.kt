@@ -1,4 +1,4 @@
-package eu.bluehawkqs.aviary.api.controllers
+package eu.bluehawkqs.aviary.api
 
 import com.google.appengine.api.utils.SystemProperty
 import javax.ws.rs.container.ContainerRequestContext
@@ -18,3 +18,5 @@ class ApiResponseFilter : ContainerResponseFilter {
         }
     }
 }
+
+// TODO Add exception catcher. Currently if response terminates with an exception then no headers are applied.
