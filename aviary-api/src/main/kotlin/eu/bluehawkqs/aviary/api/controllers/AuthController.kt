@@ -1,6 +1,6 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import eu.bluehawkqs.aviary.api.services.AppengineFirebaseAuth
+import eu.bluehawkqs.aviary.api.authentication.FirebaseAuth
 import java.io.IOException
 import javax.servlet.ServletContext
 import javax.servlet.ServletException
@@ -24,7 +24,7 @@ class AuthController(@Context context: ServletContext) : AviaryController(contex
             "Empty auth token received"
         } else {
             val token = authHeader!!.substringAfter("Bearer ")
-            val uid = AppengineFirebaseAuth.verifyIdToken(token).uid
+            val uid = FirebaseAuth.verifyIdToken(token).uid
             """{"userId": "$uid"}"""
         }
     }

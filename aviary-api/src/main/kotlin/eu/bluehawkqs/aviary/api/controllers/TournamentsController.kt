@@ -1,7 +1,7 @@
 package eu.bluehawkqs.aviary.api.controllers
 
+import eu.bluehawkqs.aviary.api.authentication.FirebaseAuth
 import eu.bluehawkqs.aviary.api.models.Tournament
-import eu.bluehawkqs.aviary.api.services.AppengineFirebaseAuth
 import javax.servlet.ServletContext
 import javax.ws.rs.GET
 import javax.ws.rs.HeaderParam
@@ -16,7 +16,7 @@ class TournamentsController(@Context context: ServletContext) : AviaryController
     @GET
     fun getAllTournaments(@HeaderParam("Authorization") authHeader: String): List<Tournament> {
         val token = authHeader.substringAfter("Bearer ")
-        val uid = AppengineFirebaseAuth.verifyIdToken(token).uid
+        val uid = FirebaseAuth.verifyIdToken(token).uid
         val currentUserId = usersDao.getUserIdByFirebaseID(uid)
         return tournamentsDao.getAll(currentUserId)
     }

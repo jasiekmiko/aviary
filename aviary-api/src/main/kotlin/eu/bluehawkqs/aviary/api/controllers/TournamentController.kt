@@ -1,7 +1,7 @@
 package eu.bluehawkqs.aviary.api.controllers
 
+import eu.bluehawkqs.aviary.api.authentication.FirebaseAuth
 import eu.bluehawkqs.aviary.api.models.TournamentDetails
-import eu.bluehawkqs.aviary.api.services.AppengineFirebaseAuth
 import javax.servlet.ServletContext
 import javax.ws.rs.GET
 import javax.ws.rs.HeaderParam
@@ -19,7 +19,7 @@ class TournamentController(@Context context: ServletContext) : AviaryController(
     @GET
     fun doGet(@PathParam("tournamentId") tournamentId: Int, @HeaderParam("Authorization") authHeader: String): TournamentDetails {
         val token = authHeader.substringAfter("Bearer ")
-        val uid = AppengineFirebaseAuth.verifyIdToken(token).uid
+        val uid = FirebaseAuth.verifyIdToken(token).uid
         val user = usersDao.getUserIdByFirebaseID(uid)
         return TournamentDetails(
             playersDao.getAllByTournament(tournamentId),
@@ -32,7 +32,7 @@ class TournamentController(@Context context: ServletContext) : AviaryController(
             playerId
         } else {
             val token = authHeader.substringAfter("Bearer ")
-            val uid = AppengineFirebaseAuth.verifyIdToken(token).uid
+            val uid = FirebaseAuth.verifyIdToken(token).uid
             usersDao.getUserIdByFirebaseID(uid)
         }
         playersDao.addPlayerToTournament(id, tournamentId)
