@@ -1,8 +1,7 @@
 package eu.bluehawkqs.aviary.api.controllers
 
-import com.google.firebase.auth.FirebaseAuth
 import eu.bluehawkqs.aviary.api.models.Tournament
-import java.lang.Exception
+import eu.bluehawkqs.aviary.api.services.AppengineFirebaseAuth
 import javax.servlet.ServletContext
 import javax.ws.rs.GET
 import javax.ws.rs.HeaderParam
@@ -16,24 +15,10 @@ class TournamentsController(@Context context: ServletContext) : AviaryController
 
     @GET
     fun getAllTournaments(@HeaderParam("Authorization") authHeader: String): List<Tournament> {
-        // TODO commonize
         val token = authHeader.substringAfter("Bearer ")
-        // TODO implement proper async stuff
-        val completedTask = {
-            val task = FirebaseAuth
-                .getInstance()
-                .verifyIdToken(token)
-            while (!task.isComplete) {
-                Thread.sleep(1000)
-            }
-            task
-        }()
-        if (completedTask.isSuccessful) {
-            val id = usersDao.getByFirebaseID(completedTask.result.uid)
-            return tournamentsDao.getAll(id)
-        } else {
-            throw Exception("Authentication failed", completedTask.exception)
-        }
+        val uid = AppengineFirebaseAuth.verifyIdToken(token).uid
+        val currentUserId = usersDao.getUserIdByFirebaseID(uid)
+        return tournamentsDao.getAll(currentUserId)
     }
 
 }
