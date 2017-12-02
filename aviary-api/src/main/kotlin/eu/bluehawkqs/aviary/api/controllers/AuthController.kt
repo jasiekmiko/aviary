@@ -25,7 +25,7 @@ class AuthController(@Context context: ServletContext) : AviaryController(contex
         } else {
             val token = authHeader!!.substringAfter("Bearer ")
             val uid = AppengineFirebaseAuth.verifyIdToken(token).uid
-            "User ID:" + uid
+            """{"userId": "$uid"}"""
         }
     }
 }

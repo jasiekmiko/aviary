@@ -1,7 +1,7 @@
 package eu.bluehawkqs.aviary.api.services
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.appengine.api.urlfetch.URLFetchServiceFactory
-import com.google.gson.Gson
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.Jws
@@ -151,9 +151,8 @@ class GooglePublicKeys private constructor() {
         }
 
         private fun parseJson(json: String): Map<String, String> {
-            val gson = Gson()
             val map = hashMapOf<String, String>()
-            return gson.fromJson(json, map.javaClass)
+            return ObjectMapper().readValue(json, map.javaClass)
         }
     }
 

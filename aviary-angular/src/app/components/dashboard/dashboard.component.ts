@@ -14,9 +14,9 @@ export class DashboardComponent {
   result = "";
 
   test() {
-    return this.http.get<string>("auth")
+    return this.http.get<{userId: string}>("auth")
       .subscribe(
-        response => this.result = response,
+        response => this.result = response.userId,
         error => this.result = error.message);
   }
 }
