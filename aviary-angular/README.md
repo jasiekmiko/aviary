@@ -11,10 +11,14 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
 
 ## Build
-Run `ng build` to build the project into  the `dist/` directory.
-This `dist/` should be deployed to one of the website-hosting buckets in Google storage under the appropriate name.
+1. Run `ng build` to build the project into  the `dist/` directory.
+   - This `dist/` should be deployed to one of the website-hosting buckets in Google storage under the appropriate name.
 Use the `--env=prod` flag for a production build. Ideally we'd use the `--prod` flag which also turns AOT compilation
-on, but this throws an error at the time of writing.  
+on, but this throws an error at the time of writing.
+1. Run `gsutil.cmd rsync -d -r dist gs://aviary.bluehawkqs.eu` to publish it online
+
+ TODO set up the website to be loaded over HTTPS using a [CDN](https://cloudplatform.googleblog.com/2015/09/push-google-cloud-origin-content-out-to-users.html)
+Alternatively swap to [firebase hosting](https://firebase.google.com/docs/hosting/quickstart)   
 
 ## Running unit tests
 
